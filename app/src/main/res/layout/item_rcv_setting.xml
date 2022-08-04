@@ -33,6 +33,7 @@
             tools:text="Display" />
 
         <View
+            android:id="@+id/diveder"
             app:layout_constraintStart_toStartOf="@id/tv_title_setting"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="@dimen/dp20"

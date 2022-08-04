@@ -21,6 +21,7 @@ import android.os.Bundle;
 import com.example.mockproject_music.R;
 import com.example.mockproject_music.adapter.DrawerAdapter;
 import com.example.mockproject_music.adapter.ScreenSlideAdapter;
+import com.example.mockproject_music.callback.ToolbarCallback;
 import com.example.mockproject_music.databinding.ActivityMainBinding;
 import com.example.mockproject_music.model.DrawerModel;
 import com.example.mockproject_music.util.Util;
@@ -31,7 +32,7 @@ import com.example.mockproject_music.viewmodel.MainViewModel;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements SettingFragment.CallBackListener {
+public class MainActivity extends AppCompatActivity implements ToolbarCallback {
 
     private ScreenSlideAdapter mPagerAdapter;
     private ActivityMainBinding mBinding;
@@ -83,10 +84,6 @@ public class MainActivity extends AppCompatActivity implements SettingFragment.C
         mDrawer.openDrawer(GravityCompat.START);
     }
 
-    @Override
-    public void onClickDrawer() {
-        openDrawer();
-    }
 
 //    private void initFragment() {
 //        mPagerAdapter = new ScreenSlideAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
@@ -105,5 +102,10 @@ public class MainActivity extends AppCompatActivity implements SettingFragment.C
         else{
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void onOpenDrawer() {
+        openDrawer();
     }
 }

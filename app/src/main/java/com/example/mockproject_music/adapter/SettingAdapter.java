@@ -3,6 +3,7 @@ package com.example.mockproject_music.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -49,6 +50,8 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.ViewHold
 
         holder.mBinding.tvTitleSetting.setText(settingModel.getTitle());
         Glide.with(mContext).load(settingModel.getSrcImage()).into(holder.mBinding.imgIconSetting);
+
+        if (position == mListData.size() - 1) holder.mBinding.diveder.setVisibility(View.GONE);
     }
 
     @Override

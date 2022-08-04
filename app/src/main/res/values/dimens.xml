@@ -26,4 +26,5 @@
     <dimen name="dp2">2dp</dimen>
     <dimen name="dp0dot5">0.5dp</dimen>
     <dimen name="dp14dot5">14.5dp</dimen>
+    <dimen name="dp13dot34">13.34dp</dimen>
 </resources>

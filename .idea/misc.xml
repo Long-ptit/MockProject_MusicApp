@@ -9,12 +9,13 @@
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/drawable/ic_custom_ratebar.xml" value="0.1405" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/drawable/ic_img_preview_song.xml" value="0.1515" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/drawable/ic_logo_splash.xml" value="0.1405" />
+        <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/drawable/ic_search_home.xml" value="0.104" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/drawable/ic_setting_heaset.xml" value="0.1405" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/activity_splash.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/fragment_home.xml" value="0.2" />
+        <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/fragment_setting.xml" value="0.2" />
-        <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/fragment_song.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/fragment_song.xml" value="0.2" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/header_main.xml" value="0.2" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/item_rcv_drawer.xml" value="0.2111111111111111" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/item_rcv_home.xml" value="0.136" />

@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:background="@color/bg_app"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.fragment.SongFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:textSize="30sp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Song Fragment" />
 
-</FrameLayout>
+
+    <EditText
+        android:id="@+id/edt"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:paddingStart="13.34dp"
+        android:background="@drawable/bg_search_toolbar_home"
+        android:drawableStart="@drawable/ic_search_home"
+        android:layout_width="match_parent"
+        android:textColorHint="@color/white"
+        android:gravity="center"
+        android:paddingVertical="10dp"
+        android:hint="Search album song "
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

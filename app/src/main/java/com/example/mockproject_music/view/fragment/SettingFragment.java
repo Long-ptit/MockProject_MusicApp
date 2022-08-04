@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 
 import com.example.mockproject_music.R;
 import com.example.mockproject_music.adapter.SettingAdapter;
+import com.example.mockproject_music.callback.ToolbarCallback;
 import com.example.mockproject_music.databinding.FragmentSettingBinding;
 import com.example.mockproject_music.model.SettingModel;
 import com.example.mockproject_music.viewmodel.MainViewModel;
@@ -30,7 +31,7 @@ public class SettingFragment extends Fragment {
     private FragmentSettingBinding mBinding;
     private SettingViewModel mViewModel;
     private SettingAdapter mSettingAdapter;
-    private CallBackListener callBackListener;
+    private ToolbarCallback callBackListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,8 +39,8 @@ public class SettingFragment extends Fragment {
         // Inflate the layout for this fragment
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_setting, container, false);
         mViewModel = new ViewModelProvider(requireActivity()).get(SettingViewModel.class);
-        if (getActivity() instanceof CallBackListener) {
-            callBackListener = (CallBackListener) getActivity();
+        if (getActivity() instanceof ToolbarCallback) {
+            callBackListener = (ToolbarCallback) getActivity();
         }
 
         setUpOnclick();
@@ -56,7 +57,7 @@ public class SettingFragment extends Fragment {
         mBinding.imgIconDrawer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callBackListener.onClickDrawer();
+                callBackListener.onOpenDrawer();
             }
         });
     }
@@ -84,9 +85,6 @@ public class SettingFragment extends Fragment {
         });
     }
 
-    public interface CallBackListener {
-       void onClickDrawer();
-    }
 
     @Override
     public void onResume() {

@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.mockproject_music.callback.ToolbarCallback;
 import com.example.mockproject_music.model.Playlist;
 import com.example.mockproject_music.model.Song;
 import com.example.mockproject_music.view.MainActivity;
@@ -33,6 +34,7 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding mBinding;
     private HomeViewModel mViewModel;
     private HomeAdapter mAdapter;
+    private ToolbarCallback callBackListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +42,9 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
         mViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
+        if (getActivity() instanceof ToolbarCallback) {
+            callBackListener = (ToolbarCallback) getActivity();
+        }
 
         setUpOnclick();
         setUpRcv();
@@ -90,7 +95,7 @@ public class HomeFragment extends Fragment {
         mBinding.imgMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity) requireActivity()).openDrawer();
+                callBackListener.onOpenDrawer();
             }
         });
     }
