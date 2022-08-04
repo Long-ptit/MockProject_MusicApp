@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".view.MainActivity">
+
+            <!--        <include-->
+            <!--            app:layout_constraintTop_toTopOf="parent"-->
+            <!--            android:id="layout_search"-->
+            <!--            layout="@layout/toolbar_search"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content" />-->
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragmentContainerView"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:defaultNavHost="true"
+                app:layout_constraintBottom_toTopOf="@id/bottom_view"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navGraph="@navigation/main_navi" />
+
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottom_view"
+                android:layout_width="match_parent"
+                android:layout_height="67dp"
+                android:elevation="8dp"
+                app:itemIconSize="26dp"
+                app:itemIconTint="@drawable/bottom_navigation_colors"
+                app:itemTextColor="@drawable/bottom_navigation_colors"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:menu="@menu/menu_main" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            >
+
+            <LinearLayout
+                android:background="@color/color_bg_rcv_drawer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/header_main" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcv_drawer"
+                    android:layout_marginStart="@dimen/dp20"
+                    android:layout_marginEnd="@dimen/dp6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp" />
+
+            </LinearLayout>
+
+        </com.google.android.material.navigation.NavigationView>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+</layout>
