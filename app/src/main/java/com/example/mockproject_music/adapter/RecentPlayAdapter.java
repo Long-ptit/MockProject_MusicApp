@@ -9,28 +9,28 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mockproject_music.databinding.ItemRcvHostRecommendBinding;
 import com.example.mockproject_music.databinding.ItemRcvPlayListBinding;
+import com.example.mockproject_music.databinding.ItemRcvRecentlyPlayedBinding;
 import com.example.mockproject_music.model.Playlist;
 import com.example.mockproject_music.model.Song;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHolder> {
-  //  private List<Student> mListData;
+public class RecentPlayAdapter extends RecyclerView.Adapter<RecentPlayAdapter.ViewHolder> {
+    //  private List<Student> mListData;
     private final Context mContext;
-    private List<Playlist> mListData;
+    private List<Song> mListData;
 
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setListData(List<Playlist> mListData) {
+    public void setListData(List<Song> mListData) {
         this.mListData = mListData;
         notifyDataSetChanged();
     }
 
 
-    public PlaylistAdapter(Context context) {
+    public RecentPlayAdapter(Context context) {
         this.mContext = context;
         mListData = new ArrayList<>();
 
@@ -38,19 +38,20 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHo
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ItemRcvPlayListBinding itemView =
-                ItemRcvPlayListBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        ItemRcvRecentlyPlayedBinding itemView =
+                ItemRcvRecentlyPlayedBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new ViewHolder(itemView);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Playlist playlist = mListData.get(position);
+        Song song = mListData.get(position);
 
-        holder.mBinding.tvName.setText(playlist.getName());
-        holder.mBinding.tvAuthor.setText(playlist.getAuthor());
+        holder.mBinding.tvName.setText(song.getName());
+        holder.mBinding.tvAuthor.setText(song.getSinger());
 
+        if (position == mListData.size() - 1) holder.mBinding.diveder.setVisibility(View.GONE);
         //Glide.with(mContext).load(song.getPreviewResource()).into(holder.mBinding.imgContent);
     }
 
@@ -60,9 +61,9 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final ItemRcvPlayListBinding mBinding;
+        private final ItemRcvRecentlyPlayedBinding mBinding;
 
-        public ViewHolder(@NonNull ItemRcvPlayListBinding binding) {
+        public ViewHolder(@NonNull ItemRcvRecentlyPlayedBinding binding) {
             super(binding.getRoot());
             mBinding = binding;
         }

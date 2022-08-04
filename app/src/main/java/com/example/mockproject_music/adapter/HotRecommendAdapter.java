@@ -3,6 +3,7 @@ package com.example.mockproject_music.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -49,6 +50,7 @@ public class HotRecommendAdapter extends RecyclerView.Adapter<HotRecommendAdapte
 
         holder.mBinding.tvName.setText(song.getName());
         holder.mBinding.tvAuthor.setText(song.getSinger());
+
         //Glide.with(mContext).load(song.getPreviewResource()).into(holder.mBinding.imgContent);
     }
 

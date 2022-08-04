@@ -19,6 +19,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     private final Context mContext;
     private HotRecommendAdapter mHotRecommendAdapter;
     private PlaylistAdapter mPlaylistAdapter;
+    private RecentPlayAdapter mRecentPlayAdapter;
+
+    public RecentPlayAdapter getRecentPlayAdapter() {
+        return mRecentPlayAdapter;
+    }
+
     public HotRecommendAdapter getHotRecommendAdapter() {
         return mHotRecommendAdapter;
     }
@@ -32,6 +38,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
      //   mListData = new ArrayList<>();
         mHotRecommendAdapter = new HotRecommendAdapter(mContext);
         mPlaylistAdapter = new PlaylistAdapter(mContext);
+        mRecentPlayAdapter = new RecentPlayAdapter(mContext);
     }
 
     @Override
@@ -67,6 +74,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             }
             case 2: {
                 holder.mBinding.tvTitle.setText("Recently Played");
+                holder.mBinding.rcv.setLayoutManager(new LinearLayoutManager(
+                        mContext,
+                        RecyclerView.VERTICAL,
+                        false
+                ));
+                holder.mBinding.rcv.setAdapter(mRecentPlayAdapter);
+                holder.mBinding.diveder.setVisibility(View.GONE);
                 break;
             }
 

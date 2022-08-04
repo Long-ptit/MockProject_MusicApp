@@ -17,6 +17,11 @@ import java.util.List;
 public class HomeViewModel extends AndroidViewModel {
     private MutableLiveData<List<Song>> mListSongMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<List<Playlist>> mListPlayListMutableLiveData = new MutableLiveData<>();
+    private MutableLiveData<List<Song>> mListSongRecentMutableLiveData = new MutableLiveData<>();
+
+    public LiveData<List<Song>> getListSongRecentMutableLiveData() {
+        return mListSongRecentMutableLiveData;
+    }
 
     public LiveData<List<Song>> getListSongMutableLiveData() {
         return mListSongMutableLiveData;
@@ -24,6 +29,18 @@ public class HomeViewModel extends AndroidViewModel {
 
     public LiveData<List<Playlist>> getListPlayListMutableLiveData() {
         return mListPlayListMutableLiveData;
+    }
+
+    public void addFakeRecentPlay() {
+        List<Song> listSong = new ArrayList<>();
+        listSong.add(new Song(R.drawable.img_preview_song_home, "Sound of Sky", "Dilon Bruce"));
+        listSong.add(new Song(R.drawable.img_preview_song_home, "Sound of Sky", "Dilon Bruce"));
+        listSong.add(new Song(R.drawable.img_preview_song_home, "Sound of Sky", "Dilon Bruce"));
+        listSong.add(new Song(R.drawable.img_preview_song_home, "Sound of Sky", "Dilon Bruce"));
+        listSong.add(new Song(R.drawable.img_preview_song_home, "Sound of Sky", "Dilon Bruce"));
+
+
+        mListSongRecentMutableLiveData.postValue(listSong);
     }
 
     public void addFakePlayList() {

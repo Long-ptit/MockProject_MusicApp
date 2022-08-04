@@ -46,6 +46,7 @@ public class HomeFragment extends Fragment {
         setUpObsevable();
         mViewModel.addFakeData();
         mViewModel.addFakePlayList();
+        mViewModel.addFakeRecentPlay();
         return mBinding.getRoot();
     }
 
@@ -61,6 +62,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onChanged(List<Playlist> playlists) {
                 mAdapter.getPlaylistAdapter().setListData(playlists);
+            }
+        });
+
+        mViewModel.getListSongRecentMutableLiveData().observe(getViewLifecycleOwner(), new Observer<List<Song>>() {
+            @Override
+            public void onChanged(List<Song> songs) {
+                mAdapter.getRecentPlayAdapter().setListData(songs);
             }
         });
 

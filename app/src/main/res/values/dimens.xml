@@ -22,4 +22,8 @@
     <dimen name="dp_bottom_view">67dp</dimen>
     <dimen name="dp150">150dp</dimen>
     <dimen name="dp120">120dp</dimen>
+    <dimen name="dp23">23dp</dimen>
+    <dimen name="dp2">2dp</dimen>
+    <dimen name="dp0dot5">0.5dp</dimen>
+    <dimen name="dp14dot5">14.5dp</dimen>
 </resources>

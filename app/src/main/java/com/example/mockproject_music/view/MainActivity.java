@@ -31,12 +31,13 @@ import com.example.mockproject_music.viewmodel.MainViewModel;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SettingFragment.CallBackListener {
 
     private ScreenSlideAdapter mPagerAdapter;
     private ActivityMainBinding mBinding;
     private MainViewModel mViewModel;
     private DrawerAdapter mDrawerAdapter;
+    private DrawerLayout mDrawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,8 +79,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openDrawer() {
-        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
-        drawerLayout.openDrawer(GravityCompat.START);
+        mDrawer = mBinding.drawerLayout;
+        mDrawer.openDrawer(GravityCompat.START);
+    }
+
+    @Override
+    public void onClickDrawer() {
+        openDrawer();
     }
 
 //    private void initFragment() {
@@ -89,4 +95,15 @@ public class MainActivity extends AppCompatActivity {
 //        mPagerAdapter.addFragment(new SettingFragment());
 //        mBinding.viewPager.setAdapter(mPagerAdapter);
 //    }
+
+
+    @Override
+    public void onBackPressed() {
+        if(mDrawer.isDrawerOpen(GravityCompat.START)){ //replace this with actual function which returns if the drawer is open
+            mDrawer.close();     // replace this with actual function which closes drawer
+        }
+        else{
+            super.onBackPressed();
+        }
+    }
 }

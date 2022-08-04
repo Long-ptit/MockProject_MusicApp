@@ -33,13 +33,14 @@
             tools:text="Themes" />
 
         <View
+            android:id="@+id/diveder"
             app:layout_constraintStart_toStartOf="@id/tv_title_drawer"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="@dimen/dp20"
             app:layout_constraintTop_toBottomOf="@id/tv_title_drawer"
             android:layout_width="0dp"
             android:background="@color/color_bg_divider_home"
-            android:layout_height="0.5dp" />
+            android:layout_height="@dimen/dp1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

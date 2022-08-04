@@ -2,6 +2,8 @@ package com.example.mockproject_music.view.fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -28,6 +30,7 @@ public class SettingFragment extends Fragment {
     private FragmentSettingBinding mBinding;
     private SettingViewModel mViewModel;
     private SettingAdapter mSettingAdapter;
+    private CallBackListener callBackListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,10 +38,30 @@ public class SettingFragment extends Fragment {
         // Inflate the layout for this fragment
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_setting, container, false);
         mViewModel = new ViewModelProvider(requireActivity()).get(SettingViewModel.class);
+        if (getActivity() instanceof CallBackListener) {
+            callBackListener = (CallBackListener) getActivity();
+        }
+
+        setUpOnclick();
         setUpObservable();
         setUpRcv();
         mViewModel.getDataSetting();
         return mBinding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        mBinding.imgIconDrawer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callBackListener.onClickDrawer();
+            }
+        });
+    }
+
+    private void setUpOnclick() {
     }
 
     private void setUpRcv() {
@@ -59,6 +82,10 @@ public class SettingFragment extends Fragment {
                 mSettingAdapter.setListData(settingModels);
             }
         });
+    }
+
+    public interface CallBackListener {
+       void onClickDrawer();
     }
 
     @Override

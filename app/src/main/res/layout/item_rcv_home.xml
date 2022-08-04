@@ -39,6 +39,7 @@
             tools:listitem="@layout/item_rcv_host_recommend" />
 
         <View
+            android:id="@+id/diveder"
             android:background="@color/color_bg_divider_home"
             android:layout_marginTop="@dimen/dp10"
             android:layout_below="@id/rcv"
