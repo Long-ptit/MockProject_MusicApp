@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
-        android:layout_width="200dp"
+        android:layout_width="@dimen/dp150"
         android:layout_height="wrap_content"
         tools:background="@color/bg_app"
         android:padding="10dp"
@@ -11,7 +11,7 @@
 
         <RelativeLayout
             android:background="@drawable/bg_img_home"
-            android:layout_height="100dp"
+            android:layout_height="@dimen/dp120"
             android:layout_width="match_parent">
 
             <ImageView
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp20"
-            android:text="Sound of Sky"
+            tools:text="Sound of Sky"
             android:textColor="@color/white"
             android:textSize="@dimen/sp13" />
 

@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.mockproject_music.model.Playlist;
 import com.example.mockproject_music.model.Song;
 import com.example.mockproject_music.view.MainActivity;
 import com.example.mockproject_music.R;
@@ -44,6 +45,7 @@ public class HomeFragment extends Fragment {
         setUpRcv();
         setUpObsevable();
         mViewModel.addFakeData();
+        mViewModel.addFakePlayList();
         return mBinding.getRoot();
     }
 
@@ -54,6 +56,15 @@ public class HomeFragment extends Fragment {
                 mAdapter.getHotRecommendAdapter().setListData(songs);
             }
         });
+
+        mViewModel.getListPlayListMutableLiveData().observe(getViewLifecycleOwner(), new Observer<List<Playlist>>() {
+            @Override
+            public void onChanged(List<Playlist> playlists) {
+                mAdapter.getPlaylistAdapter().setListData(playlists);
+            }
+        });
+
+
     }
 
     private void setUpRcv() {
@@ -68,7 +79,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void setUpOnclick() {
-        mBinding.btnDrawer.setOnClickListener(new View.OnClickListener() {
+        mBinding.imgMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((MainActivity) requireActivity()).openDrawer();

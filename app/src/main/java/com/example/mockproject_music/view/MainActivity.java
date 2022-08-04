@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        Util.transparentStatusbar(this, getWindow());
+        //Util.transparentStatusbar(this, getWindow());
         initNavigation();
         NavHostFragment host = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
         NavigationUI.setupWithNavController(mBinding.bottomView, host.getNavController());

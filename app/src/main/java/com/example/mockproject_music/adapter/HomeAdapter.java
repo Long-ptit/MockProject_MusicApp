@@ -16,25 +16,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
-  //  private List<Student> mListData;
     private final Context mContext;
     private HotRecommendAdapter mHotRecommendAdapter;
-
+    private PlaylistAdapter mPlaylistAdapter;
     public HotRecommendAdapter getHotRecommendAdapter() {
         return mHotRecommendAdapter;
     }
 
-    //    @SuppressLint("NotifyDataSetChanged")
-//    public void setListData(List<Student> mListData) {
-//        this.mListData = mListData;
-//        notifyDataSetChanged();
-//    }
-
+    public PlaylistAdapter getPlaylistAdapter() {
+        return mPlaylistAdapter;
+    }
 
     public HomeAdapter(Context context) {
         this.mContext = context;
-        mHotRecommendAdapter = new HotRecommendAdapter(mContext);
      //   mListData = new ArrayList<>();
+        mHotRecommendAdapter = new HotRecommendAdapter(mContext);
+        mPlaylistAdapter = new PlaylistAdapter(mContext);
     }
 
     @Override
@@ -60,6 +57,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             }
             case 1: {
                 holder.mBinding.tvTitle.setText("Playlist");
+                holder.mBinding.rcv.setLayoutManager(new LinearLayoutManager(
+                        mContext,
+                        RecyclerView.HORIZONTAL,
+                        false
+                ));
+                holder.mBinding.rcv.setAdapter(mPlaylistAdapter);
                 break;
             }
             case 2: {

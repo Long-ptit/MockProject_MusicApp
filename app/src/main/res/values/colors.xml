@@ -13,4 +13,5 @@
     <color name="color_bg_rcv_drawer">#10121D</color>
     <color name="color_stroke_image_preview">#1CFFFFFF</color>
     <color name="color_bg_divider_home">#12FFFFFF</color>
+    <color name="bg_bottom_view">#151827</color>
 </resources>
