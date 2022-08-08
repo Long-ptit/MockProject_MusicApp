@@ -14,7 +14,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".view.MainActivity">
+            tools:context=".screen.main.MainActivity">
 
             <!--        <include-->
             <!--            app:layout_constraintTop_toTopOf="parent"-->
@@ -45,6 +45,12 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:menu="@menu/menu_main" />
 
+        <include layout="@layout/layout_bottom_player"
+            android:id="@+id/bottom_player"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/bottom_view"
+            />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

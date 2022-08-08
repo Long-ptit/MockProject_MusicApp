@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/bottom_player"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_app">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/img_preview"
+            android:layout_width="@dimen/dp45"
+            android:layout_height="@dimen/dp45"
+            android:layout_marginStart="@dimen/dp20dot5"
+            android:layout_marginTop="@dimen/dp1dot5"
+            android:layout_marginBottom="@dimen/dp5dot5"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/circle" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_marginStart="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp5"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@id/img_preview"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:maxWidth="@dimen/dp120"
+                android:id="@+id/tv_name_song"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Hello"
+                />
+
+            <TextView
+                android:id="@+id/tv_artis_song"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Hello"
+                />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_previous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_bottom_player_previous" />
+
+            <ImageView
+                android:id="@+id/img_play"
+                android:layout_width="@dimen/dp22"
+                android:layout_height="@dimen/dp22"
+                android:layout_marginHorizontal="@dimen/dp21"
+                android:src="@drawable/ic_bottom_player_play" />
+
+            <ImageView
+                android:id="@+id/img_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_bottom_player_next" />
+
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

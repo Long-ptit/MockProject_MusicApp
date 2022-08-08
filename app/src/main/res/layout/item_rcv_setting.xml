@@ -1,46 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        tools:background="@color/bg_app"
-        android:layout_marginTop="@dimen/dp10"
         android:layout_height="wrap_content"
-        >
+        android:layout_marginTop="@dimen/dp10"
+        tools:background="@color/bg_app">
 
         <ImageView
             android:id="@+id/img_icon_setting"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:layout_width="@dimen/dp24"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_height="@dimen/dp24"
-            android:src="@drawable/ic_setting_heaset" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_setting_heaset"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_title_setting"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/img_icon_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/sp14"
-            android:textColor="@color/white"
             android:layout_marginStart="@dimen/dp30"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp14"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/img_icon_setting"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Display" />
 
         <View
             android:id="@+id/diveder"
-            app:layout_constraintStart_toStartOf="@id/tv_title_setting"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="@dimen/dp20"
-            app:layout_constraintTop_toBottomOf="@id/tv_title_setting"
             android:layout_width="0dp"
-            android:background="#FFFFFF"
-            android:layout_height="0.5dp" />
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/dp20"
+            android:background="@color/color_bg_divider_home"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_title_setting"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_setting" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

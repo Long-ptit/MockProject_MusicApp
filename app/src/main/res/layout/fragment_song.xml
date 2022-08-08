@@ -1,27 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:background="@color/bg_app"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.fragment.SongFragment">
+<layout>
 
-    <!-- TODO: Update blank fragment layout -->
-
-
-    <EditText
-        android:id="@+id/edt"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
-        android:paddingStart="13.34dp"
-        android:background="@drawable/bg_search_toolbar_home"
-        android:drawableStart="@drawable/ic_search_home"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:textColorHint="@color/white"
-        android:gravity="center"
-        android:paddingVertical="10dp"
-        android:hint="Search album song "
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:background="@color/bg_app"
+        android:orientation="vertical"
+        tools:background="@color/bg_app"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".screen.song.SongFragment">
 
-</LinearLayout>
+        <!-- TODO: Update blank fragment layout -->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_tool_bar" >
+
+            <TextView
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/size_text_toolbar"
+                android:layout_height="wrap_content"
+                android:text="@string/str_songs" />
+
+            <ImageView
+                android:id="@+id/img_icon_drawer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_menu_home"
+                android:layout_marginStart="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <ImageView
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/dp19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_search_home" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:background="@color/bg_app"
+            app:tabMode="scrollable"
+            app:tabIndicator="@drawable/ic_bg_tab_view_pager"
+            app:tabIndicatorColor="@null"
+            app:tabTextAppearance="@style/tab_text"
+            app:tabTextColor="@null"
+            app:tabGravity="start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
+</layout>

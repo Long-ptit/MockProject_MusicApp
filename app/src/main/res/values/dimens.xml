@@ -27,4 +27,16 @@
     <dimen name="dp0dot5">0.5dp</dimen>
     <dimen name="dp14dot5">14.5dp</dimen>
     <dimen name="dp13dot34">13.34dp</dimen>
+    <dimen name="sp17">17sp</dimen>
+    <dimen name="size_text_toolbar">17sp</dimen>
+    <dimen name="dp45">45dp</dimen>
+    <dimen name="dp5">5dp</dimen>
+    <dimen name="dp128">128dp</dimen>
+    <dimen name="sp11">11sp</dimen>
+    <dimen name="dp4">4dp</dimen>
+    <dimen name="dp7">7dp</dimen>
+    <dimen name="dp5dot5">5.5dp</dimen>
+    <dimen name="dp1dot5">1.5dp</dimen>
+    <dimen name="dp20dot5">20.5dp</dimen>
+    <dimen name="dp21">21dp</dimen>
 </resources>

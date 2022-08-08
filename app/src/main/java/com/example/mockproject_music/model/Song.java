@@ -4,6 +4,16 @@ public class Song {
     private int previewResource;
     private String name;
     private String singer;
+    private String dataSource;
+
+
+    public String getDataSource() {
+        return dataSource;
+    }
+
+    public void setDataSource(String dataSource) {
+        this.dataSource = dataSource;
+    }
 
     public int getPreviewResource() {
         return previewResource;
@@ -29,9 +39,10 @@ public class Song {
         this.singer = singer;
     }
 
-    public Song(int previewResource, String name, String singer) {
+    public Song(int previewResource, String name, String singer, String dataSource) {
         this.previewResource = previewResource;
         this.name = name;
         this.singer = singer;
+        this.dataSource = dataSource;
     }
 }
