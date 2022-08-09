@@ -2,8 +2,11 @@ package com.example.mockproject_music.screen.main;
 
 import android.Manifest;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.util.Log;
 import android.view.View;
+import android.widget.SeekBar;
 
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -36,6 +39,8 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
     private DrawerAdapter mDrawerAdapter;
     private DrawerLayout mDrawer;
     private MyMediaPlayerController mMediaController;
+    private Handler mHandler;
+    private HandlerThread mHandlerThread;
 
 
     @Override
@@ -58,6 +63,7 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
 
     private void showData(Song song) {
         Log.d(TAG, "showData: ");
+        binding.bottomPlayer.progress.setMax(mMediaController.getDuration());
         binding.bottomPlayer.tvNameSong.setText(song.getName());
         binding.bottomPlayer.tvArtisSong.setText(song.getSinger());
     }
@@ -66,6 +72,7 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
         switch (event) {
             case OPEN_MUSIC: {
                 Log.d(TAG, "handleEvent: open");
+                updateSeekBar();
                 showData(mMediaController.getCurrentSong());
                 openBottomPlayer();
                 startMyService();
@@ -118,6 +125,29 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
             Log.d(TAG, "delete: ");
             mMediaController.deleteSong();
         });
+
+        setUpListenerSeekBar();
+    }
+
+    private void setUpListenerSeekBar() {
+        binding.bottomPlayer.progress.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser) {
+                    mMediaController.seekTo(progress);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
     public void playOrPauseSong() {
@@ -154,6 +184,9 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
 
     @Override
     public void initView() {
+        mHandlerThread = new HandlerThread("Update Seekbar");
+        mHandlerThread.start();
+        mHandler = new Handler(mHandlerThread.getLooper());
         NavHostFragment host = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
         NavigationUI.setupWithNavController(binding.bottomView, host.getNavController());
         setUpRcv();
@@ -226,6 +259,7 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
            }
 
            case DELETE_SONG: {
+               mHandler.removeMessages(0);
                hideBottomPlayer();
                break;
            }
@@ -236,5 +270,17 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
     protected void onDestroy() {
         super.onDestroy();
         mMediaController.removeCallBack(this);
+        mHandler.removeMessages(0);
+        mHandlerThread.interrupt();
+    }
+
+    private void updateSeekBar() {
+        Log.d(TAG, "updateSeekBar: ");
+        int currPosition = mMediaController.getCurrentPosition();
+        if (binding != null) {
+            runOnUiThread(() -> binding.bottomPlayer.progress.setProgress(currPosition));
+        }
+        mHandler.postDelayed(() -> updateSeekBar(), 1000);
+
     }
 }

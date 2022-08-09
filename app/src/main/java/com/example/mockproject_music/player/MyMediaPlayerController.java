@@ -96,5 +96,19 @@ public final class MyMediaPlayerController {
         mMediaPlayer.delete();
     }
 
+    public int getCurrentPosition() {
+        return mMediaPlayer.getCurrentPosition();
+    }
+
+    public int getDuration() {
+        return mMediaPlayer.getDuration();
+    }
+
+    public void seekTo(int duration) {
+        mMediaPlayer.seekTo(duration);
+    }
+
+
+
 
 }

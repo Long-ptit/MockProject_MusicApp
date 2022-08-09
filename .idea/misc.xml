@@ -5,7 +5,10 @@
       <map>
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/drawable/bg_img_home.xml" value="0.1515" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/drawable/bg_search_toolbar_home.xml" value="0.124" />
+        <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/drawable/bg_seekbar_bottom_player.xml" value="0.119" />
+        <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/drawable/bg_seekbar_player_bottom.xml" value="0.119" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/drawable/bg_tab_indicator.xml" value="0.1" />
+        <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/drawable/bg_thumb_progess_music_bottom_player.xml" value="0.119" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/drawable/bottom_navigation_colors.xml" value="0.1405" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/drawable/ic_baseline_clear_24.xml" value="0.119" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/drawable/ic_bg_tab_view_pager.xml" value="0.119" />
@@ -46,7 +49,7 @@
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/item_rcv_playlist_top.xml" value="0.16" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/item_rcv_recently_played.xml" value="0.3225806451612903" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/item_rcv_setting.xml" value="0.2" />
-        <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/layout_bottom_player.xml" value="0.2" />
+        <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/layout_bottom_player.xml" value="0.176" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/layout_notification_music.xml" value="0.2" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/toolbar_search.xml" value="0.176" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/menu/menu_main.xml" value="0.25416666666666665" />

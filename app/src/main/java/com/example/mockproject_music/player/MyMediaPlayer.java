@@ -72,14 +72,25 @@ public class MyMediaPlayer {
         notifyDataUpdate(UpdateType.CHANGE_UI);
     }
 
-    public void delete() {
+    public synchronized void delete() {
         mMediaPlayer.reset();
         notifyDataUpdate(UpdateType.DELETE_SONG);
     }
 
+    public int getCurrentPosition() {
+       return mMediaPlayer.getCurrentPosition();
+    }
+
+    public int getDuration() {
+        return mMediaPlayer.getDuration();
+    }
 
     public boolean isPlaying() {
         return mMediaPlayer.isPlaying();
+    }
+
+    public synchronized void seekTo(int position) {
+        mMediaPlayer.seekTo(position);
     }
 
     public void setCallBack(MediaPlayerCallback callBack) {

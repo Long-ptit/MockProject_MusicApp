@@ -10,6 +10,15 @@
         android:visibility="gone"
         tools:visibility="visible">
 
+        <SeekBar
+            android:id="@+id/progress"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="10dp"
+            android:background="#00FFFFFF"
+            android:progress="20"
+            android:thumb="@drawable/bg_thumb_progess_music_bottom_player" />
+
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/img_preview"
             android:layout_width="@dimen/dp45"
@@ -20,7 +29,7 @@
             android:src="@mipmap/ic_launcher"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/progress"
             app:shapeAppearanceOverlay="@style/circle" />
 
         <LinearLayout
