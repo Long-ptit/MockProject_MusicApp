@@ -5,10 +5,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/bottom_player"
         android:layout_width="match_parent"
-        android:visibility="gone"
-        tools:visibility="visible"
         android:layout_height="wrap_content"
-        android:background="@color/bg_app">
+        android:background="@color/bg_player_bottom"
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/img_preview"
@@ -25,28 +25,25 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp15"
             android:layout_marginTop="@dimen/dp5"
             android:orientation="vertical"
             app:layout_constraintStart_toEndOf="@id/img_preview"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_height="wrap_content" >
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:maxWidth="@dimen/dp120"
                 android:id="@+id/tv_name_song"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Hello"
-                />
+                android:maxWidth="@dimen/dp120"
+                tools:text="Hello" />
 
             <TextView
                 android:id="@+id/tv_artis_song"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Hello"
-                />
-
+                tools:text="Hello" />
 
 
         </LinearLayout>
@@ -82,6 +79,15 @@
 
 
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp4"
+            android:src="@drawable/ic_bottom_player_close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

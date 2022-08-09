@@ -17,6 +17,7 @@ import com.example.mockproject_music.R;
 import com.example.mockproject_music.model.Song;
 import com.example.mockproject_music.player.MediaPlayerCallback;
 import com.example.mockproject_music.player.MyMediaPlayerController;
+import com.example.mockproject_music.player.type.UpdateType;
 
 public class MusicService extends Service implements MediaPlayerCallback {
     public static final String ACTION_NAME = "ACTION_NAME";
@@ -28,6 +29,7 @@ public class MusicService extends Service implements MediaPlayerCallback {
     public static final int ACTION_PREVIOUS = 5;
 
     private MyMediaPlayerController mMediaPlayerController;
+    private Song mCurrentSong;
 
     @Nullable
     @Override
@@ -41,6 +43,7 @@ public class MusicService extends Service implements MediaPlayerCallback {
         super.onCreate();
         mMediaPlayerController = MyMediaPlayerController.getInstance(getApplicationContext());
         mMediaPlayerController.setCallBack(this);
+        mCurrentSong = mMediaPlayerController.getCurrentSong();
     }
 
     @Override
@@ -53,9 +56,8 @@ public class MusicService extends Service implements MediaPlayerCallback {
 
     private void createNotification() {
         RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.layout_notification_music);
-        Song song = mMediaPlayerController.getCurrentSong();
-        remoteViews.setTextViewText(R.id.tv_title, song.getName());
-        remoteViews.setTextViewText(R.id.tv_Singer, song.getSinger());
+        remoteViews.setTextViewText(R.id.tv_title, mCurrentSong.getName());
+        remoteViews.setTextViewText(R.id.tv_Singer, mCurrentSong.getSinger());
         // remoteViews.setInt(R.id.layout, "setBackgroundResource", mSong.getImage());
 //
         if (mMediaPlayerController.isPlaying()) {
@@ -88,10 +90,6 @@ public class MusicService extends Service implements MediaPlayerCallback {
         mMediaPlayerController.removeCallBack(this);
     }
 
-    @Override
-    public void updateData() {
-        createNotification();
-    }
 
     private void handleAction(int action) {
         Log.d("MyLog", "updateData service: " + action);
@@ -103,9 +101,7 @@ public class MusicService extends Service implements MediaPlayerCallback {
                 mMediaPlayerController.pauseSong();
                 break;
             case ACTION_CLEAR:
-//
-//                mMediaPlayerController.deleteSong();
-//                stopSelf();
+                mMediaPlayerController.deleteSong();
                 break;
             case ACTION_NEXT:
                 mMediaPlayerController.nextSong();
@@ -117,5 +113,25 @@ public class MusicService extends Service implements MediaPlayerCallback {
                 break;
         }
 
+    }
+
+    @Override
+    public void updateData(UpdateType type) {
+        switch (type) {
+            case CHANGE_UI: {
+                createNotification();
+                break;
+            }
+            case CHANGE_SONG: {
+                mCurrentSong = mMediaPlayerController.getCurrentSong();
+                createNotification();
+                break;
+            }
+            case DELETE_SONG: {
+                stopSelf();
+                break;
+            }
+
+        }
     }
 }

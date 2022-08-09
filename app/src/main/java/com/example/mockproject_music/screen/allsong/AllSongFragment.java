@@ -12,7 +12,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
-import android.util.Log;
 
 import com.example.mockproject_music.R;
 import com.example.mockproject_music.screen.allsong.adapter.AllSongAdapter;
@@ -44,7 +43,7 @@ public class AllSongFragment extends BaseFragment<MainViewModel, FragmentAllSong
             @Override
             public void run() {
                 ContentResolver contentResolver = requireActivity().getContentResolver();
-                Uri songUri = null;
+                Uri songUri;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     songUri = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL);
                 } else {
@@ -116,6 +115,6 @@ public class AllSongFragment extends BaseFragment<MainViewModel, FragmentAllSong
     @Override
     public void onClickMusic(Song song, int position) {
         viewModel.setDataEvent(Event.OPEN_MUSIC);
-        mMediaPlayer.setPosition(position);
+        mMediaPlayer.openMusicFromPosition(position);
     }
 }

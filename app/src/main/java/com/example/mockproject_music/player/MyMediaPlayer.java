@@ -3,8 +3,10 @@ package com.example.mockproject_music.player;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.util.Log;
 
 import com.example.mockproject_music.model.Song;
+import com.example.mockproject_music.player.type.UpdateType;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,11 +41,12 @@ public class MyMediaPlayer {
         return instance;
     }
 
-    private void notifyData() {
+    private void notifyDataUpdate(UpdateType type) {
         for (MediaPlayerCallback callback : mListCallBack) {
-            callback.updateData();
+            callback.updateData(type);
         }
     }
+
 
     public synchronized void playSong(Song song) {
         mMediaPlayer.reset();
@@ -53,7 +56,7 @@ public class MyMediaPlayer {
             mMediaPlayer.setVolume(100f, 100f);
             mMediaPlayer.setLooping(false);
             mMediaPlayer.start();
-            notifyData();
+            notifyDataUpdate(UpdateType.CHANGE_SONG);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -61,16 +64,17 @@ public class MyMediaPlayer {
 
     public synchronized void pauseSong() {
         mMediaPlayer.pause();
-        notifyData();
+        notifyDataUpdate(UpdateType.CHANGE_UI);
     }
 
     public synchronized void resume() {
         mMediaPlayer.start();
-        notifyData();
+        notifyDataUpdate(UpdateType.CHANGE_UI);
     }
 
     public void delete() {
         mMediaPlayer.reset();
+        notifyDataUpdate(UpdateType.DELETE_SONG);
     }
 
 

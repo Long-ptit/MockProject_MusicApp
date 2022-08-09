@@ -16,6 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.mockproject_music.R;
+import com.example.mockproject_music.player.MediaPlayerCallback;
+import com.example.mockproject_music.player.MyMediaPlayerController;
+import com.example.mockproject_music.player.type.UpdateType;
 import com.example.mockproject_music.screen.main.adapter.DrawerAdapter;
 import com.example.mockproject_music.base.BaseActivity;
 import com.example.mockproject_music.databinding.ActivityMainBinding;
@@ -26,11 +29,13 @@ import com.example.mockproject_music.service.MusicService;
 
 import java.util.List;
 
-public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBinding> {
+public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBinding>
+        implements MediaPlayerCallback {
 
     private static final String TAG = "MyLog";
     private DrawerAdapter mDrawerAdapter;
     private DrawerLayout mDrawer;
+    private MyMediaPlayerController mMediaController;
 
 
     @Override
@@ -49,12 +54,6 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
             }
         });
 
-        viewModel.getCurentSongMutableLiveData().observe(this, new Observer<Song>() {
-            @Override
-            public void onChanged(Song song) {
-                showData(song);
-            }
-        });
     }
 
     private void showData(Song song) {
@@ -67,20 +66,9 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
         switch (event) {
             case OPEN_MUSIC: {
                 Log.d(TAG, "handleEvent: open");
-                startMyService();
+                showData(mMediaController.getCurrentSong());
                 openBottomPlayer();
-                break;
-            }
-            case CLOSE_MUSIC: {
-                hideBottomPlayer();
-                break;
-            }
-            case PAUSE_MUSIC: {
-                setPause();
-                break;
-            }
-            case PLAY_MUSIC: {
-                setPlay();
+                startMyService();
                 break;
             }
         }
@@ -108,21 +96,36 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
 
     @Override
     public void initListener() {
+        mMediaController = MyMediaPlayerController.getInstance(getApplicationContext());
+        mMediaController.setCallBack(this);
         if (!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
             requestPermissionsSafely(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
         }
 
         binding.bottomPlayer.imgPlay.setOnClickListener(v -> {
-            viewModel.playOrPauseSong();
+            playOrPauseSong();
         });
 
         binding.bottomPlayer.imgPrevious.setOnClickListener(v -> {
-            viewModel.previousSong();
+            mMediaController.previousSong();
         });
 
         binding.bottomPlayer.imgNext.setOnClickListener(v -> {
-            viewModel.nextSong();
+            mMediaController.nextSong();
         });
+
+        binding.bottomPlayer.imgClose.setOnClickListener(v -> {
+            Log.d(TAG, "delete: ");
+            mMediaController.deleteSong();
+        });
+    }
+
+    public void playOrPauseSong() {
+        if (mMediaController.isPlaying()) {
+            mMediaController.pauseSong();
+        } else {
+            mMediaController.resumeSong();
+        }
     }
 
 //    @Override
@@ -202,5 +205,36 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
     }
 
 
+    @Override
+    public void updateData(UpdateType type) {
+       switch (type) {
+           case CHANGE_UI: {
+               if (mMediaController.isPlaying()) {
+                   setPause();
+               } else {
+                   setPlay();
+               }
+               break;
+           }
+           case CHANGE_SONG: {
+               Log.d(TAG, "updateData: changesong");
+               Song currentSong = mMediaController.getCurrentSong();
+               showData(currentSong);
+               setPause();
+               openBottomPlayer();
+               break;
+           }
 
+           case DELETE_SONG: {
+               hideBottomPlayer();
+               break;
+           }
+       }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mMediaController.removeCallBack(this);
+    }
 }

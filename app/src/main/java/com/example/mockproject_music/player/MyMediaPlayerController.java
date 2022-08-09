@@ -55,7 +55,7 @@ public final class MyMediaPlayerController {
         this.mListSong = mListSong;
     }
 
-    public void setPosition(int position) {
+    public void openMusicFromPosition(int position) {
         if (mIndexSong != position) {
             mIndexSong = position;
             mMediaPlayer.playSong(mListSong.get(mIndexSong));

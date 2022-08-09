@@ -18,37 +18,19 @@ import com.example.mockproject_music.player.MyMediaPlayerController;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainViewModel extends AndroidViewModel implements MediaPlayerCallback {
+public class MainViewModel extends AndroidViewModel  {
     private static final String TAG = "MyLog";
     private MutableLiveData<List<Drawer>> mListDrawerMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<Event> mEventMutableLiveData = new MutableLiveData<>();
-    private MutableLiveData<Song> mCurentSongMutableLiveData = new MutableLiveData<>();
-    private final MyMediaPlayerController mMediaController;
 
-    public MyMediaPlayerController getMediaController() {
-        return mMediaController;
-    }
 
     public MainViewModel(@NonNull Application application) {
         super(application);
-        mMediaController = MyMediaPlayerController.getInstance(application.getApplicationContext());
-        mMediaController.setCallBack(this);
     }
 
-    public LiveData<Song> getCurentSongMutableLiveData() {
-        return mCurentSongMutableLiveData;
-    }
 
     public LiveData<Event> getEventMutableLiveData() {
         return mEventMutableLiveData;
-    }
-
-    public void playOrPauseSong() {
-        if (mMediaController.isPlaying()) {
-            mMediaController.pauseSong();
-        } else {
-            mMediaController.resumeSong();
-        }
     }
 
     public void setDataEvent(Event event) {
@@ -72,29 +54,4 @@ public class MainViewModel extends AndroidViewModel implements MediaPlayerCallba
         mListDrawerMutableLiveData.postValue(listDrawer);
     }
 
-
-    @Override
-    public void updateData() {
-        Log.d(TAG, "updateData: ");
-        mCurentSongMutableLiveData.postValue(mMediaController.getCurrentSong());
-        if (mMediaController.isPlaying()) {
-            mEventMutableLiveData.postValue(Event.PAUSE_MUSIC);
-        } else {
-            mEventMutableLiveData.postValue(Event.PLAY_MUSIC);
-        }
-    }
-
-    public void nextSong() {
-        mMediaController.nextSong();
-    }
-
-    public void previousSong() {
-        mMediaController.previousSong();
-    }
-
-
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-    }
 }

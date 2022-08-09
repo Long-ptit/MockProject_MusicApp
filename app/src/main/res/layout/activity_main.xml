@@ -15,7 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".screen.main.MainActivity">
-
             <!--        <include-->
             <!--            app:layout_constraintTop_toTopOf="parent"-->
             <!--            android:id="layout_search"-->
@@ -29,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:defaultNavHost="true"
-                app:layout_constraintBottom_toTopOf="@id/bottom_view"
+                app:layout_constraintBottom_toTopOf="@id/bottom_player"
                 app:layout_constraintTop_toTopOf="parent"
                 app:navGraph="@navigation/main_navi" />
 
