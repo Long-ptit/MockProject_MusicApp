@@ -3,7 +3,6 @@ package com.example.mockproject_music.player;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.util.Log;
 
 import com.example.mockproject_music.model.Song;
 import com.example.mockproject_music.player.type.UpdateType;
@@ -18,24 +17,26 @@ public class MyMediaPlayer {
     private final MediaPlayer mMediaPlayer;
     private List<MediaPlayerCallback> mListCallBack;
     private Context mContext;
+    private CallBackFinish mCallBack;
 
-    public MyMediaPlayer(Context context) {
+    public MyMediaPlayer(Context context, CallBackFinish callBackSuccess) {
         mListCallBack = new ArrayList<>();
         mMediaPlayer = new MediaPlayer();
         mContext = context;
+        this.mCallBack = callBackSuccess;
         mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                //handle auto next, i not do this right now
+                mCallBack.onCompleteSong();
+                //handle auto next, i don't do this right now
             }
         });
     }
 
-    public static MyMediaPlayer getInstance(Context context) {
+    public static MyMediaPlayer getInstance(Context context, CallBackFinish callBackSuccess) {
         if (instance == null) {
             synchronized (MyMediaPlayer.class) {
-                instance = new MyMediaPlayer(context);
-
+                instance = new MyMediaPlayer(context, callBackSuccess);
             }
         }
         return instance;

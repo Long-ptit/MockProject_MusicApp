@@ -3,11 +3,10 @@ package com.example.mockproject_music.player;
 import android.content.Context;
 import com.example.mockproject_music.model.Song;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class MyMediaPlayerController {
+public final class MyMediaPlayerController implements CallBackFinish {
 
 
     private static final String TAG = "MyMediaPlayer";
@@ -17,12 +16,11 @@ public final class MyMediaPlayerController {
     private Context context;
     private List<Song> mListSong = new ArrayList<>();
     private int mIndexSong = 0;
-    private int mPreSong = -1;
 
 
     private MyMediaPlayerController(Context context) {
         this.context = context;
-        mMediaPlayer = MyMediaPlayer.getInstance(context);
+        mMediaPlayer = MyMediaPlayer.getInstance(context, this);
     }
 
     public static MyMediaPlayerController getInstance(Context context) {
@@ -109,6 +107,8 @@ public final class MyMediaPlayerController {
     }
 
 
-
-
+    @Override
+    public void onCompleteSong() {
+        nextSong();
+    }
 }
