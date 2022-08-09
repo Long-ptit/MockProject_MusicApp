@@ -24,11 +24,13 @@
             app:shapeAppearanceOverlay="@style/circle" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp15"
+            app:layout_constraintEnd_toStartOf="@id/layout_player"
             android:layout_marginTop="@dimen/dp5"
             android:orientation="vertical"
+            android:layout_marginEnd="@dimen/dp10"
             app:layout_constraintStart_toEndOf="@id/img_preview"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -36,12 +38,13 @@
                 android:id="@+id/tv_name_song"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxWidth="@dimen/dp120"
+                android:maxLines="1"
                 tools:text="Hello" />
 
             <TextView
                 android:id="@+id/tv_artis_song"
                 android:layout_width="wrap_content"
+                android:maxLines="1"
                 android:layout_height="wrap_content"
                 tools:text="Hello" />
 
@@ -49,6 +52,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layout_player"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="40dp"

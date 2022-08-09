@@ -1,7 +1,6 @@
 package com.example.mockproject_music.screen.main;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -10,10 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.mockproject_music.R;
 import com.example.mockproject_music.model.Drawer;
-import com.example.mockproject_music.model.Event;
-import com.example.mockproject_music.model.Song;
-import com.example.mockproject_music.player.MediaPlayerCallback;
-import com.example.mockproject_music.player.MyMediaPlayerController;
+import com.example.mockproject_music.screen.main.type.Event;
 
 import java.util.ArrayList;
 import java.util.List;

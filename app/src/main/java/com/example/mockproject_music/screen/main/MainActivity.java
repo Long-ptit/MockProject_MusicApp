@@ -23,7 +23,7 @@ import com.example.mockproject_music.screen.main.adapter.DrawerAdapter;
 import com.example.mockproject_music.base.BaseActivity;
 import com.example.mockproject_music.databinding.ActivityMainBinding;
 import com.example.mockproject_music.model.Drawer;
-import com.example.mockproject_music.model.Event;
+import com.example.mockproject_music.screen.main.type.Event;
 import com.example.mockproject_music.model.Song;
 import com.example.mockproject_music.service.MusicService;
 

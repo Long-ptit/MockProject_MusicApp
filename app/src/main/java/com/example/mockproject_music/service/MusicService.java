@@ -74,6 +74,7 @@ public class MusicService extends Service implements MediaPlayerCallback {
         Notification notification = new NotificationCompat.Builder(getApplication(), NOTIFICATION_CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setCustomContentView(remoteViews)
+                .setCustomBigContentView(remoteViews)
                 .build();
         startForeground(ID_NOTIFICATION, notification);
     }

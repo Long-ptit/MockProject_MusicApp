@@ -17,7 +17,7 @@ import com.example.mockproject_music.R;
 import com.example.mockproject_music.screen.allsong.adapter.AllSongAdapter;
 import com.example.mockproject_music.base.BaseFragment;
 import com.example.mockproject_music.databinding.FragmentAllSongBinding;
-import com.example.mockproject_music.model.Event;
+import com.example.mockproject_music.screen.main.type.Event;
 import com.example.mockproject_music.model.Song;
 import com.example.mockproject_music.player.MyMediaPlayerController;
 import com.example.mockproject_music.screen.main.MainViewModel;
