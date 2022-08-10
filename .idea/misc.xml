@@ -42,7 +42,7 @@
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/fragment_setting.xml" value="0.1" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/fragment_song.xml" value="0.152" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/header_main.xml" value="0.2" />
-        <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/item_rcv_album.xml" value="0.4" />
+        <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/item_rcv_album.xml" value="0.10400000000000001" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/item_rcv_all_song.xml" value="0.2" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/item_rcv_detail_album.xml" value="0.152" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/item_rcv_drawer.xml" value="0.2111111111111111" />
@@ -57,6 +57,7 @@
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/layout_notification_music.xml" value="0.2" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/toolbar_search.xml" value="0.176" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/menu/menu_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/menu/popup_menu.xml" value="0.1" />
       </map>
     </option>
   </component>

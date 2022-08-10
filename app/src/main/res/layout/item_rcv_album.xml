@@ -2,79 +2,79 @@
 <layout>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp18"
-        tools:background="@color/bg_app"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools">
+        tools:background="@color/bg_app">
 
         <ImageView
             android:id="@+id/img"
             android:layout_width="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/img_preview_song_home"
+            android:layout_height="128dp"
             android:scaleType="centerCrop"
-            android:layout_height="128dp" />
+            android:src="@drawable/img_preview_song_home"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-<!--        app:layout_constraintDimensionRatio="1:1"-->
+        <!--        app:layout_constraintDimensionRatio="1:1"-->
 
         <LinearLayout
             android:id="@+id/layout"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/img"
-            android:layout_height="wrap_content" >
+            app:layout_constraintTop_toBottomOf="@id/img">
 
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp15"
-                android:textSize="@dimen/sp12"
                 android:text="I Am... Yours"
                 android:textColor="@color/color_text_item_rcv"
-                android:layout_height="wrap_content" />
+                android:textSize="@dimen/sp12" />
 
             <TextView
                 android:id="@+id/tv_artist"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp7"
-                android:textSize="@dimen/sp11"
                 android:text="Beyonce"
                 android:textColor="@color/color_text_artist_album"
-                android:layout_height="wrap_content" />
+                android:textSize="@dimen/sp11" />
 
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/img_pop_up"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp19"
             android:src="@drawable/ic_albums_spinner"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/img"
-            android:layout_marginTop="@dimen/dp19"
-            android:layout_height="wrap_content" />
+            app:layout_constraintTop_toBottomOf="@id/img" />
 
         <TextView
             android:id="@+id/tv_sum_song"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="10 Songs"
-            android:textColor="@color/color_text_artist_album" />
+            android:textColor="@color/color_text_artist_album"
+            app:layout_constraintBottom_toBottomOf="@id/layout"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageView
-            app:layout_constraintTop_toTopOf="@id/tv_sum_song"
-            app:layout_constraintBottom_toBottomOf="@id/tv_sum_song"
-            app:layout_constraintEnd_toStartOf="@id/tv_sum_song"
-            android:layout_marginEnd="@dimen/dp13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_albums_dot" />
-
+            android:layout_marginEnd="@dimen/dp13"
+            android:src="@drawable/ic_albums_dot"
+            app:layout_constraintBottom_toBottomOf="@id/tv_sum_song"
+            app:layout_constraintEnd_toStartOf="@id/tv_sum_song"
+            app:layout_constraintTop_toTopOf="@id/tv_sum_song" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

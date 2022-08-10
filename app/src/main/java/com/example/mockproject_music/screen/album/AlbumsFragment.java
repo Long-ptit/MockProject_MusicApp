@@ -1,16 +1,16 @@
 package com.example.mockproject_music.screen.album;
 
-import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.mockproject_music.R;
 import com.example.mockproject_music.base.BaseFragment;
@@ -26,6 +26,7 @@ import java.util.List;
 public class AlbumsFragment extends BaseFragment<MainViewModel, FragmentAlbumsBinding>
     implements AlbumAdapter.CallBackAlbum{
 
+    private static final String TAG = "MyLog";
     private AlbumAdapter mAlbumAdapter;
 
     @Override
@@ -35,6 +36,7 @@ public class AlbumsFragment extends BaseFragment<MainViewModel, FragmentAlbumsBi
 
     @Override
     public void initListener() {
+
     }
 
     @Override
@@ -77,5 +79,20 @@ public class AlbumsFragment extends BaseFragment<MainViewModel, FragmentAlbumsBi
     public void onClickAlbum(Album album) {
         NavController navController = Navigation.findNavController(requireActivity(), R.id.fragmentContainerView);
         navController.navigate(R.id.action_songFragment_to_detailAlbumFragment);
+    }
+
+    @Override
+    public void onClickMore(View v) {
+        Log.d(TAG, "onClickMore: ");
+        PopupMenu pm = new PopupMenu(getContext(), v, Gravity.BOTTOM);
+        pm.getMenuInflater().inflate(R.menu.popup_menu, pm.getMenu());
+        pm.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Toast.makeText(getContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+        pm.show();
     }
 }

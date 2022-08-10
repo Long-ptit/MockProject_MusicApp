@@ -3,6 +3,7 @@ package com.example.mockproject_music.screen.album.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -51,8 +52,12 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder> 
         Album album = mListData.get(position);
         holder.mBinding.tvName.setText(album.getName());
         holder.mBinding.tvArtist.setText(album.getArtist());
-        holder.itemView.setOnClickListener(v -> {
+        holder.mBinding.img.setOnClickListener(v -> {
             mCallBack.onClickAlbum(album);
+        });
+
+        holder.mBinding.imgPopUp.setOnClickListener(v -> {
+            mCallBack.onClickMore(v);
         });
     }
 
@@ -72,6 +77,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder> 
 
     public interface CallBackAlbum {
         void onClickAlbum(Album album);
+        void onClickMore(View view);
     }
 
 }
