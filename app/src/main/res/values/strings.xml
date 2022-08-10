@@ -6,10 +6,11 @@
     <string name="search_album_song">Search album song</string>
     <string name="str_songs">Songs</string>
     <string name="str_home">Home</string>
-    
-    <string name="tab_all_song" > All Songs </string>
-    <string name="tab_play_list" > Playlists </string>
-    <string name="tab_albums" > Albums </string>
-    <string name="tab_artists" > Artists </string>
-    <string name="tab_genres" > Genres </string>
+
+    <string name="tab_all_song"> All Songs </string>
+    <string name="tab_play_list"> Playlists </string>
+    <string name="tab_albums"> Albums </string>
+    <string name="tab_artists"> Artists </string>
+    <string name="tab_genres"> Genres </string>
+    <string name="album_details">Album Details</string>
 </resources>

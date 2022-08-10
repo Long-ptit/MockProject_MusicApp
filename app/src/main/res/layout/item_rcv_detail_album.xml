@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp20"
+        tools:background="@color/bg_app">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_time_song"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.6" />
+
+        <ImageView
+            android:id="@+id/img_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_detail_album_play"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_name_song"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp21"
+            android:layout_marginTop="@dimen/dp2"
+            android:layout_marginEnd="@dimen/dp20"
+            android:maxLines="1"
+            android:text="Billie Jean"
+            android:textSize="@dimen/sp13"
+            app:layout_constraintEnd_toEndOf="@id/gl_time_song"
+            app:layout_constraintStart_toEndOf="@id/img_play"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_time_song"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3:56"
+            android:textSize="@dimen/dp10"
+            app:layout_constraintStart_toStartOf="@id/gl_time_song"
+            app:layout_constraintTop_toTopOf="@id/tv_name_song" />
+
+        <ImageView
+            android:id="@+id/img_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_detail_album_sound"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/img_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_detail_album_more"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginTop="@dimen/dp8dot5"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_name_song"
+            app:layout_constraintTop_toBottomOf="@id/tv_name_song" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

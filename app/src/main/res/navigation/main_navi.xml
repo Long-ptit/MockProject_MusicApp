@@ -14,10 +14,19 @@
         android:id="@+id/songFragment"
         android:name="com.example.mockproject_music.screen.song.SongFragment"
         android:label="fragment_song"
-        tools:layout="@layout/fragment_song" />
+        tools:layout="@layout/fragment_song" >
+        <action
+            android:id="@+id/action_songFragment_to_detailAlbumFragment"
+            app:destination="@id/detailAlbumFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.example.mockproject_music.screen.setting.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/detailAlbumFragment"
+        android:name="com.example.mockproject_music.screen.detail_album.DetailAlbumFragment"
+        android:label="DetailAlbumFragment"
+        tools:layout="@layout/fragment_detail_album"/>
 </navigation>

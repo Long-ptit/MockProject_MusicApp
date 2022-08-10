@@ -35,14 +35,16 @@
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/activity_splash.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/fragment_albums.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/fragment_all_song.xml" value="0.1390625" />
+        <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/fragment_detail_album.xml" value="0.2" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/fragment_genres.xml" value="0.25" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/fragment_home.xml" value="0.10400000000000001" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/fragment_playlist.xml" value="0.12666666666666668" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/fragment_setting.xml" value="0.1" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/fragment_song.xml" value="0.152" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/header_main.xml" value="0.2" />
-        <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/item_rcv_album.xml" value="0.2" />
+        <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/item_rcv_album.xml" value="0.4" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/item_rcv_all_song.xml" value="0.2" />
+        <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/item_rcv_detail_album.xml" value="0.152" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/item_rcv_drawer.xml" value="0.2111111111111111" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/item_rcv_home.xml" value="0.136" />
         <entry key="..\:/Users/LongTX/AndroidStudioProjects/MockProject_Music/app/src/main/res/layout/item_rcv_host_recommend.xml" value="0.264" />
