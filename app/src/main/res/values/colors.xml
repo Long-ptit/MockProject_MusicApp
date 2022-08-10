@@ -16,4 +16,6 @@
     <color name="bg_bottom_view">#151827</color>
     <color name="color_item_text_playlist_top">#C1C0C0</color>
     <color name="bg_player_bottom">#0f1222</color>
+    <color name="color_text_item_rcv">#EEEEEE</color>
+    <color name="color_text_artist_album">#C1C0C0</color>
 </resources>
