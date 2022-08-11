@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.mockproject_music.R;
 import com.example.mockproject_music.base.BaseFragment;
+import com.example.mockproject_music.screen.main.MainActivity;
 import com.example.mockproject_music.screen.main.MainViewModel;
 import com.example.mockproject_music.screen.song.adapter.ViewPagerSongAdapter;
 import com.example.mockproject_music.databinding.FragmentSongBinding;
@@ -34,7 +35,9 @@ public class SongFragment extends BaseFragment<MainViewModel, FragmentSongBindin
 
     @Override
     public void initListener() {
-
+        binding.imgIconDrawer.setOnClickListener(v -> {
+            ((MainActivity) requireActivity()).openDrawer();
+        });
     }
 
     @Override

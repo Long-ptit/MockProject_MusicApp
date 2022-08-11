@@ -18,6 +18,8 @@ public class MainViewModel extends AndroidViewModel  {
     private static final String TAG = "MyLog";
     private MutableLiveData<List<Drawer>> mListDrawerMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<Event> mEventMutableLiveData = new MutableLiveData<>();
+    private MutableLiveData<Boolean> mShowPlayer = new MutableLiveData<>(false);
+
 
 
     public MainViewModel(@NonNull Application application) {
@@ -31,6 +33,18 @@ public class MainViewModel extends AndroidViewModel  {
 
     public void setDataEvent(Event event) {
         mEventMutableLiveData.setValue(event);
+    }
+
+    public void openPlayer() {
+        mShowPlayer.postValue(true);
+    }
+
+    public void closePlayer() {
+        mShowPlayer.postValue(false);
+    }
+
+    public LiveData<Boolean> getShowPlayer() {
+        return mShowPlayer;
     }
 
     public LiveData<List<Drawer>> getListDrawerMutableLiveData() {

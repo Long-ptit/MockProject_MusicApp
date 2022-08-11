@@ -29,4 +29,9 @@
         android:name="com.example.mockproject_music.screen.detail_album.DetailAlbumFragment"
         android:label="DetailAlbumFragment"
         tools:layout="@layout/fragment_detail_album"/>
+    <fragment
+        android:id="@+id/playSongFragment"
+        android:name="com.example.mockproject_music.screen.play_song.PlaySongFragment"
+        android:label="PlaySongFragment"
+        tools:layout="@layout/fragment_play_song"/>
 </navigation>

@@ -17,4 +17,10 @@
         android:icon="@drawable/ic_menu_3"
         android:title="@string/str_settings" />
 
+    <item
+        android:id="@+id/playSongFragment"
+        android:icon="@drawable/ic_menu_3"
+        android:visible="false"
+        android:title="@string/str_settings" />
+
 </menu>

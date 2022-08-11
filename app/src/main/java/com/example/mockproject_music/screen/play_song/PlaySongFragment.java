@@ -5,7 +5,10 @@ import android.os.Bundle;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -21,6 +24,8 @@ import com.example.mockproject_music.screen.main.MainViewModel;
 
 public class PlaySongFragment extends BaseFragment<MainViewModel,FragmentPlaySongBinding> {
 
+
+    private static final String TAG = "MyLog";
 
     @Override
     public void observerLiveData() {
@@ -41,6 +46,29 @@ public class PlaySongFragment extends BaseFragment<MainViewModel,FragmentPlaySon
             });
             pm.show();
         });
+
+        binding.imgBack.setOnClickListener(v -> {
+            getActivity().onBackPressed();
+        });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        viewModel.closePlayer();
+    }
+
+    @Override
+    public void onStop() {
+        Log.d(TAG, "onStop: ");
+        viewModel.openPlayer();
+        super.onStop();
+    }
+
+    @Override
+    public void onPause() {
+        Log.d(TAG, "onpause: ");
+        super.onPause();
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.example.mockproject_music.screen.home;
 
+import android.view.View;
+
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,6 +14,7 @@ import com.example.mockproject_music.model.Song;
 import com.example.mockproject_music.R;
 import com.example.mockproject_music.screen.home.adapter.HomeAdapter;
 import com.example.mockproject_music.databinding.FragmentHomeBinding;
+import com.example.mockproject_music.screen.main.MainActivity;
 
 import java.util.List;
 
@@ -48,12 +51,12 @@ public class HomeFragment extends BaseFragment<HomeViewModel, FragmentHomeBindin
 
     @Override
     public void initListener() {
-//        binding.imgMenu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                callBackListener.onOpenDrawer();
-//            }
-//        });
+        binding.imgMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) requireActivity()).openDrawer();
+            }
+        });
     }
 
     @Override

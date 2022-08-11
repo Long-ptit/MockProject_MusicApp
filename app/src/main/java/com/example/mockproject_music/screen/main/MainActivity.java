@@ -2,16 +2,23 @@ package com.example.mockproject_music.screen.main;
 
 import android.Manifest;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.SeekBar;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,6 +36,7 @@ import com.example.mockproject_music.model.Drawer;
 import com.example.mockproject_music.screen.main.type.Event;
 import com.example.mockproject_music.model.Song;
 import com.example.mockproject_music.service.MusicService;
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.List;
 
@@ -37,10 +45,11 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
 
     private static final String TAG = "MyLog";
     private DrawerAdapter mDrawerAdapter;
-    private DrawerLayout mDrawer;
     private MyMediaPlayerController mMediaController;
     private Handler mHandler;
     private HandlerThread mHandlerThread;
+    private boolean isPlayService;
+    private int idLastestScreen;
 
 
     @Override
@@ -59,6 +68,17 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
             }
         });
 
+        viewModel.getShowPlayer().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if (aBoolean) {
+                    binding.bottomPlayer.bottomPlayer.setVisibility(View.VISIBLE);
+                } else {
+                    binding.bottomPlayer.bottomPlayer.setVisibility(View.GONE);
+                }
+            }
+        });
+
     }
 
     private void showData(Song song) {
@@ -71,11 +91,12 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
     private void handleEvent(Event event) {
         switch (event) {
             case OPEN_MUSIC: {
-                Log.d(TAG, "handleEvent: open");
-                updateSeekBar();
-                showData(mMediaController.getCurrentSong());
-                openBottomPlayer();
-                startMyService();
+                if (!isPlayService) {
+                    startMyService();
+                    updateSeekBar();
+                }
+                navigateToPlayingSong();
+                viewModel.closePlayer();
                 break;
             }
         }
@@ -97,7 +118,6 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
 
     private void startMyService() {
         Intent serviceIntent = new Intent(this, MusicService.class);
-        serviceIntent.putExtra("inputExtra", "Foreground Service Example in Android");
         startService(serviceIntent);
     }
 
@@ -126,7 +146,18 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
             mMediaController.deleteSong();
         });
 
+        binding.bottomPlayer.bottomPlayer.setOnClickListener(v -> {
+            Log.d(TAG, "layout: ");
+            viewModel.closePlayer();
+            navigateToPlayingSong();
+        });
+
         setUpListenerSeekBar();
+    }
+
+    private void navigateToPlayingSong() {
+        idLastestScreen = binding.bottomView.getSelectedItemId();
+        binding.bottomView.setSelectedItemId(R.id.playSongFragment);
     }
 
     private void setUpListenerSeekBar() {
@@ -187,11 +218,22 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
         mHandlerThread = new HandlerThread("Update Seekbar");
         mHandlerThread.start();
         mHandler = new Handler(mHandlerThread.getLooper());
-        NavHostFragment host = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
-        NavigationUI.setupWithNavController(binding.bottomView, host.getNavController());
+        setUpNavigation();
         setUpRcv();
         viewModel.addDataDrawer();
     }
+
+    private void setUpNavigation() {
+        NavHostFragment host = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
+        NavigationUI.setupWithNavController(binding.bottomView, host.getNavController());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume: ");
+    }
+
 
     @Override
     public int getLayoutId() {
@@ -215,55 +257,48 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
     }
 
     public void openDrawer() {
-        mDrawer = binding.drawerLayout;
-        mDrawer.openDrawer(GravityCompat.START);
+        binding.drawerLayout.openDrawer(GravityCompat.START);
     }
 
 
     @Override
     public void onBackPressed() {
-        if (mDrawer.isDrawerOpen(GravityCompat.START)) { //replace this with actual function which returns if the drawer is open
-            mDrawer.close();     // replace this with actual function which closes drawer
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) { //replace this with actual function which returns if the drawer is open
+            binding.drawerLayout.close();     // replace this with actual function which closes drawer
+        } else if (binding.bottomView.getSelectedItemId() == R.id.playSongFragment) {
+            binding.bottomView.setSelectedItemId(idLastestScreen);
         } else {
             super.onBackPressed();
         }
     }
 
-    private void openBottomPlayer() {
-        binding.bottomPlayer.bottomPlayer.setVisibility(View.VISIBLE);
-    }
-
-    private void hideBottomPlayer() {
-        binding.bottomPlayer.bottomPlayer.setVisibility(View.GONE);
-    }
-
 
     @Override
     public void updateData(UpdateType type) {
-       switch (type) {
-           case CHANGE_UI: {
-               if (mMediaController.isPlaying()) {
-                   setPause();
-               } else {
-                   setPlay();
-               }
-               break;
-           }
-           case CHANGE_SONG: {
-               Log.d(TAG, "updateData: changesong");
-               Song currentSong = mMediaController.getCurrentSong();
-               showData(currentSong);
-               setPause();
-               openBottomPlayer();
-               break;
-           }
+        switch (type) {
+            case CHANGE_UI: {
+                if (mMediaController.isPlaying()) {
+                    setPause();
+                } else {
+                    setPlay();
+                }
+                break;
+            }
+            case CHANGE_SONG: {
+                Log.d(TAG, "updateData: changesong");
+                Song currentSong = mMediaController.getCurrentSong();
+                showData(currentSong);
+                setPause();
+                break;
+            }
 
-           case DELETE_SONG: {
-               mHandler.removeMessages(0);
-               hideBottomPlayer();
-               break;
-           }
-       }
+            case DELETE_SONG: {
+                mHandler.removeMessages(0);
+                binding.bottomPlayer.bottomPlayer.setVisibility(View.GONE);
+                isPlayService = false;
+                break;
+            }
+        }
     }
 
     @Override
