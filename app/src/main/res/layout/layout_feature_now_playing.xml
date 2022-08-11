@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal"
+    tools:background="@color/bg_app">
+
+
+    <LinearLayout
+        android:id="@+id/layout_playlist"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_now_playing_playlist" />
+
+        <TextView
+            style="@style/textWithSize9ColorMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/playlist" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_shuffle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_now_playing_shuffle" />
+
+        <TextView
+            style="@style/textWithSize9ColorMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/shuffle" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layout_repeat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_now_playing_repeat" />
+
+        <TextView
+            style="@style/textWithSize9ColorMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/repeat" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layout_eq"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_now_playing_equiliser" />
+
+        <TextView
+            style="@style/textWithSize9ColorMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/eq" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layout_heart"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_now_playing_heart" />
+
+        <TextView
+            style="@style/textWithSize9ColorMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Playlist" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -24,7 +24,7 @@ import java.util.List;
 
 
 public class AlbumsFragment extends BaseFragment<MainViewModel, FragmentAlbumsBinding>
-    implements AlbumAdapter.CallBackAlbum{
+        implements AlbumAdapter.CallBackAlbum {
 
     private static final String TAG = "MyLog";
     private AlbumAdapter mAlbumAdapter;

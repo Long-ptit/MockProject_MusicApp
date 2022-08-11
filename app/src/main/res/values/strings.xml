@@ -13,4 +13,9 @@
     <string name="tab_artists"> Artists </string>
     <string name="tab_genres"> Genres </string>
     <string name="album_details">Album Details</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="playlist">Playlist</string>
+    <string name="shuffle">Shuffle</string>
+    <string name="repeat">Repeat</string>
+    <string name="eq">EQ</string>
 </resources>

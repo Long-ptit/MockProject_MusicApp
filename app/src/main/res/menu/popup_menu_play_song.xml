@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/social_share"
+        android:title="Social Share" />
+    <item
+        android:id="@+id/playing_queue"
+        android:title="Playing Queue" />
+    <item
+        android:id="@+id/add_to_play_list"
+        android:title="Add to playlist..." />
+    <item
+        android:id="@+id/lyrics"
+        android:title="Lyrics" />
+    <item
+        android:id="@+id/volume"
+        android:title="Volume" />
+    <item
+        android:id="@+id/detail"
+        android:title="Details" />
+    <item
+        android:id="@+id/sleep_timer"
+        android:title="Sleep timer" />
+    <item
+        android:id="@+id/equaliser"
+        android:title="Equaliser" />
+    <item
+        android:id="@+id/ringtone_cutter"
+        android:title="Ringtone Cutter" />
+    <item
+        android:id="@+id/player_theme"
+        android:title="Player theme" />
+
+
+</menu>

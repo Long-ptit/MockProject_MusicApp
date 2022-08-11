@@ -45,4 +45,8 @@
     <dimen name="sp12">12sp</dimen>
     <dimen name="dp18">18dp</dimen>
     <dimen name="dp8dot5">8.5dp</dimen>
+    <dimen name="dp40">40dp</dimen>
+    <dimen name="sp18">18sp</dimen>
+    <dimen name="dp8">8dp</dimen>
+    <dimen name="sp9">9sp</dimen>
 </resources>

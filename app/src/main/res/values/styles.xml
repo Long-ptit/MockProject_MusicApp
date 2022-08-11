@@ -11,4 +11,21 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="textWithSize12AndColorMedium">
+        <item name="android:textSize">@dimen/sp12</item>
+        <item name="android:textColor">@color/color_text_artist_album</item>
+    </style>
+
+
+    <style name="textWithSize14">
+        <item name="android:textSize">@dimen/sp14</item>
+        <item name="android:textColor">@color/color_text_artist_album</item>
+    </style>
+
+    <style name="textWithSize9ColorMedium">
+        <item name="android:textSize">@dimen/sp9</item>
+        <item name="android:textColor">@color/color_text_artist_album</item>
+    </style>
+
+
 </resources>
