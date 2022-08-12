@@ -49,4 +49,6 @@
     <dimen name="sp18">18sp</dimen>
     <dimen name="dp8">8dp</dimen>
     <dimen name="sp9">9sp</dimen>
+    <dimen name="dp118">118dp</dimen>
+    <dimen name="dp12">12dp</dimen>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.mockproject_music.screen.album;
+package com.example.mockproject_music.common;
 
 import android.graphics.Rect;
 import android.view.View;
