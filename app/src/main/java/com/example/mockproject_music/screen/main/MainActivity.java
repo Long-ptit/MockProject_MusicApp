@@ -310,7 +310,6 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
     }
 
     private void updateSeekBar() {
-        Log.d(TAG, "updateSeekBar: ");
         int currPosition = mMediaController.getCurrentPosition();
         if (binding != null) {
             runOnUiThread(() -> binding.bottomPlayer.progress.setProgress(currPosition));

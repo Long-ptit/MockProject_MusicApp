@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.example.mockproject_music.R;
 import com.example.mockproject_music.base.BaseFragment;
 import com.example.mockproject_music.databinding.FragmentDetailAlbumBinding;
+import com.example.mockproject_music.model.Song;
 import com.example.mockproject_music.screen.detail_album.adapter.DetailAlbumAdapter;
 import com.example.mockproject_music.screen.main.MainViewModel;
 
@@ -62,4 +63,5 @@ public class DetailAlbumFragment extends BaseFragment<MainViewModel, FragmentDet
     public void initViewModel() {
         viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
     }
+
 }

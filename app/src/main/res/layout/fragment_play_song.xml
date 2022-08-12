@@ -80,6 +80,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_name_song"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp18"
@@ -92,6 +93,7 @@
             android:layout_marginTop="@dimen/dp6">
 
             <TextView
+                android:id="@+id/tv_artist"
                 style="@style/textWithSize12AndColorMedium"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -145,10 +147,11 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/dp23"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp23">
 
             <ImageView
+                android:id="@+id/img_previous"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/dp40"
@@ -159,8 +162,8 @@
 
             <ImageView
                 android:id="@+id/img_play_or_pause"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/dp40"
+                android:layout_height="@dimen/dp40"
                 android:src="@drawable/ic_now_playing_play"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -168,6 +171,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
+                android:id="@+id/img_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp40"
