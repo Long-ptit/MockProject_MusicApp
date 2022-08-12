@@ -18,6 +18,7 @@ import com.example.mockproject_music.player.MediaPlayerCallback;
 import com.example.mockproject_music.player.MyMediaPlayerController;
 import com.example.mockproject_music.player.type.UpdateType;
 import com.example.mockproject_music.screen.main.MainViewModel;
+import com.example.mockproject_music.util.Util;
 
 
 public class PlaySongFragment extends BaseFragment<MainViewModel,FragmentPlaySongBinding>
@@ -151,6 +152,8 @@ public class PlaySongFragment extends BaseFragment<MainViewModel,FragmentPlaySon
     private void showDataSong(Song song) {
         binding.tvNameSong.setText(song.getName());
         binding.tvArtist.setText(song.getSinger());
+        binding.tvDuration.setText(Util.convertMilToMinutes(song.getDuration()));
+        binding.tvAlbum.setText("Album - " + song.getAlbumName());
     }
 
     public void playOrPauseSong() {

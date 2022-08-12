@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.mockproject_music.databinding.ItemRcvAllSongBinding;
 import com.example.mockproject_music.model.Song;
 
@@ -52,6 +53,11 @@ public class AllSongAdapter extends RecyclerView.Adapter<AllSongAdapter.ViewHold
         });
         holder.mBinding.tvSongName.setText(song.getName());
         holder.mBinding.tvSongAuthor.setText(song.getSinger());
+
+        Glide
+                .with(mContext)
+                .load(song.getPreviewResource())
+                .into(holder.mBinding.imgThumb);
     }
 
     @Override

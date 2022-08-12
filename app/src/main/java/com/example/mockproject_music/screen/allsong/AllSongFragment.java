@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -14,6 +15,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
+import android.util.Log;
 
 import com.example.mockproject_music.R;
 import com.example.mockproject_music.screen.allsong.adapter.AllSongAdapter;
@@ -35,60 +37,23 @@ public class AllSongFragment extends BaseFragment<MainViewModel, FragmentAllSong
 
     @Override
     public void observerLiveData() {
-
+        viewModel.getListAllSong().observe(getViewLifecycleOwner(), new Observer<List<Song>>() {
+            @Override
+            public void onChanged(List<Song> songs) {
+                Log.d("ptit", "onChanged alllist: ");
+                mAllSongAdapter.setListData(songs);
+            }
+        });
     }
 
     @Override
     public void initListener() {
-
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                ContentResolver contentResolver = requireActivity().getContentResolver();
-                Uri songUri;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    songUri = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL);
-                } else {
-                    songUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-                }
-                Cursor songCursor = contentResolver.query(songUri, null, null, null, null);
-                List<Song> mList = new ArrayList<>();
-
-                if (songCursor != null && songCursor.moveToFirst()) {
-                    int titleIndex = songCursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
-                    int artistIndex = songCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
-                    int albumIndex = songCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM);
-                    int dataIndex = songCursor.getColumnIndex(MediaStore.Audio.Media.DATA);
-
-                    while (songCursor.moveToNext()) {
-                        String title = songCursor.getString(titleIndex);
-                        String artist = songCursor.getString(artistIndex);
-                        String strUri = songCursor.getString(dataIndex);
-                        String album = songCursor.getString(albumIndex);
-                        mList.add(new Song(R.drawable.img_preview_song_home, title, artist, strUri));
-                    }
-                }
-                Handler handler = new Handler(Looper.getMainLooper());
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mAllSongAdapter.setListData(mList);
-                    }
-                });
-
-
-                mMediaPlayer = MyMediaPlayerController.getInstance(requireContext());
-                mMediaPlayer.setListSong(mList);
-
-            }
-        }
-        );
-        thread.start();
     }
 
     @Override
     public void initView() {
         setUpRcv();
+        mMediaPlayer = MyMediaPlayerController.getInstance(getContext());
     }
 
 

@@ -1,10 +1,12 @@
 package com.example.mockproject_music.model;
 
 public class Song {
-    private int previewResource;
+    private String previewResource;
     private String name;
     private String singer;
     private String dataSource;
+    private String albumName;
+    private long duration;
 
 
     public String getDataSource() {
@@ -15,11 +17,11 @@ public class Song {
         this.dataSource = dataSource;
     }
 
-    public int getPreviewResource() {
+    public String getPreviewResource() {
         return previewResource;
     }
 
-    public void setPreviewResource(int previewResource) {
+    public void setPreviewResource(String previewResource) {
         this.previewResource = previewResource;
     }
 
@@ -39,10 +41,28 @@ public class Song {
         this.singer = singer;
     }
 
-    public Song(int previewResource, String name, String singer, String dataSource) {
+    public Song(String previewResource, String name, String singer, String dataSource, String albumName, long duration) {
         this.previewResource = previewResource;
         this.name = name;
         this.singer = singer;
         this.dataSource = dataSource;
+        this.albumName = albumName;
+        this.duration = duration;
+    }
+
+    public String getAlbumName() {
+        return albumName;
+    }
+
+    public void setAlbumName(String albumName) {
+        this.albumName = albumName;
+    }
+
+    public long getDuration() {
+        return duration;
+    }
+
+    public void setDuration(long duration) {
+        this.duration = duration;
     }
 }

@@ -33,12 +33,11 @@ public class HomeViewModel extends AndroidViewModel {
 
     public void addFakeRecentPlay() {
         List<Song> listSong = new ArrayList<>();
-        listSong.add(new Song(R.drawable.img_preview_song_home, "Sound of Sky", "Dilon Bruce", "1"));
-        listSong.add(new Song(R.drawable.img_preview_song_home, "Sound of Sky", "Dilon Bruce", "1"));
-        listSong.add(new Song(R.drawable.img_preview_song_home, "Sound of Sky", "Dilon Bruce", "1"));
-        listSong.add(new Song(R.drawable.img_preview_song_home, "Sound of Sky", "Dilon Bruce", "1"));
-        listSong.add(new Song(R.drawable.img_preview_song_home, "Sound of Sky", "Dilon Bruce", "1"));
-
+        listSong.add(new Song("1", "Sound of Sky", "Dilon Bruce", "1", "1", 1));
+        listSong.add(new Song("1", "Sound of Sky", "Dilon Bruce", "1", "1", 1));
+        listSong.add(new Song("1", "Sound of Sky", "Dilon Bruce", "1", "1", 1));
+        listSong.add(new Song("1", "Sound of Sky", "Dilon Bruce", "1", "1", 1));
+        listSong.add(new Song("1", "Sound of Sky", "Dilon Bruce", "1", "1", 1));
 
         mListSongRecentMutableLiveData.postValue(listSong);
     }
@@ -56,12 +55,10 @@ public class HomeViewModel extends AndroidViewModel {
 
     public void addFakeData() {
         List<Song> listSong = new ArrayList<>();
-        listSong.add(new Song(R.drawable.img_preview_song_home, "Sound of Sky", "Dilon Bruce", "1"));
-        listSong.add(new Song(R.drawable.img_preview_song_home, "Sound of Sky", "Dilon Bruce", "1"));
-        listSong.add(new Song(R.drawable.img_preview_song_home, "Sound of Sky", "Dilon Bruce", "1"));
-        listSong.add(new Song(R.drawable.img_preview_song_home, "Sound of Sky", "Dilon Bruce", "1"));
-        listSong.add(new Song(R.drawable.img_preview_song_home, "Sound of Sky", "Dilon Bruce", "1"));
-
+        listSong.add(new Song("1", "Sound of Sky", "Dilon Bruce", "1", "1", 1));
+        listSong.add(new Song("1", "Sound of Sky", "Dilon Bruce", "1", "1", 1));
+        listSong.add(new Song("1", "Sound of Sky", "Dilon Bruce", "1", "1", 1));
+        listSong.add(new Song("1", "Sound of Sky", "Dilon Bruce", "1", "1", 1));
 
 
         mListSongMutableLiveData.postValue(listSong);

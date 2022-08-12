@@ -20,4 +20,11 @@ public class Util {
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         );
     }
+
+    public static String convertMilToMinutes(long mili) {
+        long minutes = (mili / 1000)  / 60;
+        int seconds = (int)((mili / 1000) % 60);
+
+        return minutes + ":" + seconds;
+    }
 }

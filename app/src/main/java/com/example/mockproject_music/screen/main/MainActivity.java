@@ -221,6 +221,7 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
         setUpNavigation();
         setUpRcv();
         viewModel.addDataDrawer();
+        viewModel.loadSong();
     }
 
     private void setUpNavigation() {

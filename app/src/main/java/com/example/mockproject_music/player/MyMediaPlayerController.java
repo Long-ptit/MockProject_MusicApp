@@ -1,7 +1,10 @@
 package com.example.mockproject_music.player;
 
 import android.content.Context;
+import android.util.Log;
+
 import com.example.mockproject_music.model.Song;
+import com.example.mockproject_music.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +16,15 @@ public final class MyMediaPlayerController implements CallBackFinish {
 
     private static MyMediaPlayerController instance = null;
     private final MyMediaPlayer mMediaPlayer;
-    private Context context;
-    private List<Song> mListSong = new ArrayList<>();
+    private Context mContext;
+    private List<Song> mListSong;
     private int mIndexSong = 0;
 
 
-    private MyMediaPlayerController(Context context) {
-        this.context = context;
-        mMediaPlayer = MyMediaPlayer.getInstance(context, this);
+    private MyMediaPlayerController(Context mContext) {
+        this.mContext = mContext;
+        mMediaPlayer = MyMediaPlayer.getInstance(mContext, this);
+        mListSong = new ArrayList<>();
     }
 
     public static MyMediaPlayerController getInstance(Context context) {
