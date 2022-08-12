@@ -52,7 +52,7 @@ public class AlbumsFragment extends BaseFragment<MainViewModel, FragmentAlbumsBi
         binding.rcv.setLayoutManager(layoutManager);
         binding.rcv.setAdapter(mAlbumAdapter);
         int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.dp10);
-        binding.rcv.addItemDecoration(new SpaceItemDecoration(spacingInPixels));
+        //binding.rcv.addItemDecoration(new SpaceItemDecoration(spacingInPixels));
         getFakeData();
     }
 

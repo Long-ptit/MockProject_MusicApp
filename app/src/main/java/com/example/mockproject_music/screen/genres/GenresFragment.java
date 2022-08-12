@@ -49,8 +49,9 @@ public class GenresFragment extends BaseFragment<GenresViewModel, FragmentGenres
     private void initRcv() {
         mGenresAdapter = new GenresAdapter(requireContext());
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
-        int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.dp12);
-        binding.rcv.addItemDecoration(new SpaceItemDecoration(spacingInPixels));
+        int top = getResources().getDimensionPixelSize(R.dimen.dp12);
+        int right = getResources().getDimensionPixelSize(R.dimen.dp12);
+        binding.rcv.addItemDecoration(new SpaceItemDecoration(10, 10, 10, 10));
         binding.rcv.setAdapter(mGenresAdapter);
         binding.rcv.setLayoutManager(layoutManager);
         viewModel.getDataFake();
