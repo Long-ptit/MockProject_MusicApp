@@ -95,12 +95,10 @@ public class CirSeekBar extends View {
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
+            case MotionEvent.ACTION_UP:
                 mPos = XYtoDegree(event.getX(), event.getY());
                 handleData();
                 mCallBack.onSeek(mPos);
-                break;
-            case MotionEvent.ACTION_UP:
-                mPos = XYtoDegree(event.getX(), event.getY());
                 break;
         }
         invalidate();

@@ -45,7 +45,7 @@ public class AllSongAdapter extends RecyclerView.Adapter<AllSongAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Song song = mListData.get(position);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.mBinding.imgPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mCallBack.onClickMusic(song, position);
