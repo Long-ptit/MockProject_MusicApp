@@ -2,6 +2,7 @@ package com.example.mockproject_music.screen.main;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -26,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.mockproject_music.R;
+import com.example.mockproject_music.broadcast.MusicBrocast;
 import com.example.mockproject_music.player.MediaPlayerCallback;
 import com.example.mockproject_music.player.MyMediaPlayerController;
 import com.example.mockproject_music.player.type.UpdateType;
@@ -50,6 +52,7 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
     private HandlerThread mHandlerThread;
     private boolean isPlayService;
     private int idLastestScreen;
+    private MusicBrocast mMusicBroadcast;
 
 
     @Override
@@ -129,6 +132,9 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
     public void initListener() {
         mMediaController = MyMediaPlayerController.getInstance(getApplicationContext());
         mMediaController.setCallBack(this);
+        registerBroadcast();
+
+
         if (!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
             requestPermissionsSafely(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
         }
@@ -157,6 +163,14 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
         });
 
         setUpListenerSeekBar();
+    }
+
+    private void registerBroadcast() {
+        mMusicBroadcast = new MusicBrocast();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_POWER_CONNECTED);
+        intentFilter.addAction(Intent.ACTION_POWER_DISCONNECTED);
+        registerReceiver(mMusicBroadcast, intentFilter);
     }
 
     private void navigateToPlayingSong() {
@@ -312,6 +326,7 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
         mMediaController.removeCallBack(this);
         mHandler.removeMessages(0);
         mHandlerThread.interrupt();
+        unregisterReceiver(mMusicBroadcast);
     }
 
     private void updateSeekBar() {

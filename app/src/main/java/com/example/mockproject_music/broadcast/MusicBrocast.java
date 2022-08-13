@@ -9,31 +9,35 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
+import com.example.mockproject_music.player.MyMediaPlayerController;
+
 public class MusicBrocast extends BroadcastReceiver {
+
+    private MyMediaPlayerController mMediaController;
+
     @Override
     public void onReceive(Context context, Intent intent) {
        if (intent.getAction().equals(Intent.ACTION_POWER_CONNECTED)) {
-           Toast.makeText(context, "Dang sac", Toast.LENGTH_SHORT).show();
-          // showPopup(context);
+           mMediaController = MyMediaPlayerController.getInstance(context);
+
+           if (mMediaController.isPlaying()) {
+               showPopup(context);
+           }
        }
-
-        if (intent.getAction().equals(Intent.ACTION_POWER_DISCONNECTED)) {
-            Toast.makeText(context, "Dang khong sac", Toast.LENGTH_SHORT).show();
-        }
-
 
     }
 
     private void showPopup(Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder
-                .setTitle("Test")
-                .setMessage("Are you sure you want to exit?")
+                .setTitle("Warning")
+                .setMessage("Your phone is charging, let's stop music to protect battery!")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener()
                 {
                     public void onClick(DialogInterface dialog, int id)
                     {
+                        mMediaController.deleteSong();
                         dialog.cancel();
                     }
                 })

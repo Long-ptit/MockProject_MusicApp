@@ -46,11 +46,6 @@ public class MusicService extends Service implements MediaPlayerCallback {
         mMediaPlayerController = MyMediaPlayerController.getInstance(getApplicationContext());
         mMediaPlayerController.setCallBack(this);
         mCurrentSong = mMediaPlayerController.getCurrentSong();
-        mMusicBroadcast = new MusicBrocast();
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(Intent.ACTION_POWER_CONNECTED);
-        intentFilter.addAction(Intent.ACTION_POWER_DISCONNECTED);
-        registerReceiver(mMusicBroadcast, intentFilter);
     }
 
 
@@ -97,7 +92,6 @@ public class MusicService extends Service implements MediaPlayerCallback {
     public void onDestroy() {
         super.onDestroy();
         mMediaPlayerController.removeCallBack(this);
-        unregisterReceiver(mMusicBroadcast);
     }
 
 
