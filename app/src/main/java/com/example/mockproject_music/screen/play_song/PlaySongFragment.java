@@ -90,7 +90,7 @@ public class PlaySongFragment extends BaseFragment<MainViewModel,FragmentPlaySon
         mHandlerThread.start();
         mHandler = new Handler(mHandlerThread.getLooper());
         mMainHandler = new Handler(Looper.getMainLooper());
-        //handleData();
+        handleData();
         //show current state data first time open player
         showDataSong(mMediaController.getCurrentSong());
         getPlayOrPause();
