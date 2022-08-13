@@ -32,7 +32,7 @@ public class MusicService extends Service implements MediaPlayerCallback {
 
     private MyMediaPlayerController mMediaPlayerController;
     private Song mCurrentSong;
-    private MusicBrocast mMusicBroadcast;
+    public static Boolean serviceRunning = false;
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -46,6 +46,7 @@ public class MusicService extends Service implements MediaPlayerCallback {
         mMediaPlayerController = MyMediaPlayerController.getInstance(getApplicationContext());
         mMediaPlayerController.setCallBack(this);
         mCurrentSong = mMediaPlayerController.getCurrentSong();
+        serviceRunning = true;
     }
 
 
@@ -91,6 +92,7 @@ public class MusicService extends Service implements MediaPlayerCallback {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        serviceRunning = false;
         mMediaPlayerController.removeCallBack(this);
     }
 

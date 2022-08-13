@@ -50,7 +50,6 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
     private MyMediaPlayerController mMediaController;
     private Handler mHandler;
     private HandlerThread mHandlerThread;
-    private boolean isPlayService;
     private int idLastestScreen;
     private MusicBrocast mMusicBroadcast;
 
@@ -98,7 +97,7 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
     private void handleEvent(Event event) {
         switch (event) {
             case OPEN_MUSIC: {
-                if (!isPlayService) {
+                if (!MusicService.serviceRunning) {
                     startMyService();
                     updateSeekBar();
                 }
@@ -130,10 +129,6 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
 
     @Override
     public void initListener() {
-        mMediaController = MyMediaPlayerController.getInstance(getApplicationContext());
-        mMediaController.setCallBack(this);
-        registerBroadcast();
-
 
         if (!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
             requestPermissionsSafely(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
@@ -163,6 +158,17 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
         });
 
         setUpListenerSeekBar();
+    }
+
+    private void initMediaPlayer() {
+        mMediaController = MyMediaPlayerController.getInstance(getApplicationContext());
+        mMediaController.setCallBack(this);
+    }
+
+    private void initHandler() {
+        mHandlerThread = new HandlerThread("Update Seekbar");
+        mHandlerThread.start();
+        mHandler = new Handler(mHandlerThread.getLooper());
     }
 
     private void registerBroadcast() {
@@ -207,39 +213,24 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
         }
     }
 
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        switch (requestCode) {
-//            case 1: {
-//                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                    // Permission Granted
-//                    try {
-//                        getMusicFromApp();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                } else {
-//                    // Permission Denied
-//                    Toast.makeText(MainActivity.this, "Read Denied", Toast.LENGTH_SHORT).show();
-//                }
-//
-//                break;
-//            }
-//
-//            default:
-//                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        }
-//    }
-
     @Override
     public void initView() {
-        mHandlerThread = new HandlerThread("Update Seekbar");
-        mHandlerThread.start();
-        mHandler = new Handler(mHandlerThread.getLooper());
         setUpNavigation();
         setUpRcv();
+        initMediaPlayer();
+        registerBroadcast();
+        initHandler();
+        showPlayerWhenOpenApp();
         viewModel.addDataDrawer();
         viewModel.loadSong();
+    }
+
+    private void showPlayerWhenOpenApp() {
+        if (MusicService.serviceRunning) {
+            updateSeekBar();
+            showData(mMediaController.getCurrentSong());
+            viewModel.openPlayer();
+        }
     }
 
     private void setUpNavigation() {
@@ -314,7 +305,6 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
             case DELETE_SONG: {
                 mHandler.removeMessages(0);
                 binding.bottomPlayer.bottomPlayer.setVisibility(View.GONE);
-                isPlayService = false;
                 break;
             }
         }
