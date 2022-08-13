@@ -59,6 +59,7 @@
 
         <ImageView
             android:id="@+id/exit_button"
+            android:layout_marginStart="20dp"
             android:layout_width="@dimen/dp48"
             android:layout_height="@dimen/dp48"
             android:layout_marginEnd="@dimen/dp16"

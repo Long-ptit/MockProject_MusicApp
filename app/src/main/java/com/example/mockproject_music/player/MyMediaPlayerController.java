@@ -58,10 +58,8 @@ public final class MyMediaPlayerController implements CallBackFinish {
     }
 
     public void openMusicFromPosition(int position) {
-        if (mIndexSong != position) {
             mIndexSong = position;
-            mMediaPlayer.playSong(mListSong.get(mIndexSong));
-        }
+            mMediaPlayer.playSong(mListSong.get(position));
     }
 
     public boolean isPlaying() {
@@ -113,6 +111,7 @@ public final class MyMediaPlayerController implements CallBackFinish {
 
     @Override
     public void onCompleteSong() {
+        Log.d("ptit", "onCompleteSong: ");
         nextSong();
     }
 }

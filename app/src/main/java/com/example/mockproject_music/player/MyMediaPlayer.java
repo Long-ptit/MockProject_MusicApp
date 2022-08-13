@@ -74,6 +74,7 @@ public class MyMediaPlayer {
     }
 
     public synchronized void delete() {
+        mMediaPlayer.stop();
         mMediaPlayer.reset();
         notifyDataUpdate(UpdateType.DELETE_SONG);
     }

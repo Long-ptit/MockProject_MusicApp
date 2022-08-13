@@ -18,4 +18,6 @@
     <color name="bg_player_bottom">#0f1222</color>
     <color name="color_text_item_rcv">#EEEEEE</color>
     <color name="color_text_artist_album">#C1C0C0</color>
+    <color name="color_bg_progress_and_thumb">#D9519D</color>
+    <color name="color_bg_circle">#757681</color>
 </resources>

@@ -86,6 +86,10 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
         binding.bottomPlayer.progress.setMax(mMediaController.getDuration());
         binding.bottomPlayer.tvNameSong.setText(song.getName());
         binding.bottomPlayer.tvArtisSong.setText(song.getSinger());
+        Glide
+                .with(getApplicationContext())
+                .load(song.getPreviewResource())
+                .into(binding.bottomPlayer.imgPreview);
     }
 
     private void handleEvent(Event event) {
@@ -316,6 +320,6 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
             runOnUiThread(() -> binding.bottomPlayer.progress.setProgress(currPosition));
         }
         mHandler.postDelayed(() -> updateSeekBar(), 1000);
-
     }
+
 }

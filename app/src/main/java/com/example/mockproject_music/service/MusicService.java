@@ -6,6 +6,7 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.RemoteViews;
@@ -14,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 import com.example.mockproject_music.R;
+import com.example.mockproject_music.broadcast.MusicBrocast;
 import com.example.mockproject_music.model.Song;
 import com.example.mockproject_music.player.MediaPlayerCallback;
 import com.example.mockproject_music.player.MyMediaPlayerController;
@@ -30,7 +32,7 @@ public class MusicService extends Service implements MediaPlayerCallback {
 
     private MyMediaPlayerController mMediaPlayerController;
     private Song mCurrentSong;
-
+    private MusicBrocast mMusicBroadcast;
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -44,7 +46,13 @@ public class MusicService extends Service implements MediaPlayerCallback {
         mMediaPlayerController = MyMediaPlayerController.getInstance(getApplicationContext());
         mMediaPlayerController.setCallBack(this);
         mCurrentSong = mMediaPlayerController.getCurrentSong();
+        mMusicBroadcast = new MusicBrocast();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_POWER_CONNECTED);
+        intentFilter.addAction(Intent.ACTION_POWER_DISCONNECTED);
+        registerReceiver(mMusicBroadcast, intentFilter);
     }
+
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -58,7 +66,7 @@ public class MusicService extends Service implements MediaPlayerCallback {
         RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.layout_notification_music);
         remoteViews.setTextViewText(R.id.tv_title, mCurrentSong.getName());
         remoteViews.setTextViewText(R.id.tv_Singer, mCurrentSong.getSinger());
-        // remoteViews.setInt(R.id.layout, "setBackgroundResource", mSong.getImage());
+        //remoteViews.setInt(R.id.layout, "setBackgroundResource", mCurrentSong.getPreviewResource());
 //
         if (mMediaPlayerController.isPlaying()) {
             remoteViews.setImageViewResource(R.id.play_pause_button, R.drawable.ic_btoom_player_pause);
@@ -82,13 +90,14 @@ public class MusicService extends Service implements MediaPlayerCallback {
     private PendingIntent getPendingIntent(int action) {
         Intent intent = new Intent(getApplicationContext(), MusicService.class);
         intent.putExtra(ACTION_NAME, action);
-        return PendingIntent.getService(getApplicationContext(), action, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        return PendingIntent.getService(getApplicationContext(), action, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         mMediaPlayerController.removeCallBack(this);
+        unregisterReceiver(mMusicBroadcast);
     }
 
 

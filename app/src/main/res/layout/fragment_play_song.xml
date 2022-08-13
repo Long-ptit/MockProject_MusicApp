@@ -51,7 +51,8 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ImageView
+        <com.example.mockproject_music.customview.CirSeekBar
+            android:id="@+id/circle_seekbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp40"
