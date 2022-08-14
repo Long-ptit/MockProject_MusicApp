@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"
+        tools:background="@color/bg_app">
+
+
+
+        <ImageView
+            android:id="@+id/img_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_albums_dot"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/img_thumb"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_preview_song_home"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_name_album"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp29"
+            tools:text="Beyonce"
+            android:textSize="@dimen/sp14"
+            app:layout_constraintStart_toEndOf="@id/img_thumb"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_total_album"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="4 Albums"
+            android:textColor="@color/color_medium"
+            android:textSize="@dimen/sp11"
+            app:layout_constraintBottom_toBottomOf="@id/img_dot"
+            app:layout_constraintEnd_toStartOf="@id/img_dot"
+            app:layout_constraintStart_toStartOf="@id/tv_name_album"
+            app:layout_constraintTop_toTopOf="@id/img_dot" />
+
+        <TextView
+            android:id="@+id/tv_total_song"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp20"
+            tools:text="38 Songs"
+            android:textColor="@color/color_medium"
+            android:textSize="@dimen/sp11"
+            app:layout_constraintBottom_toBottomOf="@id/img_dot"
+            app:layout_constraintStart_toEndOf="@id/img_dot"
+            app:layout_constraintTop_toTopOf="@id/img_dot" />
+
+        <ImageView
+            android:id="@+id/img_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_artists_more"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

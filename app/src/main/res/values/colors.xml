@@ -20,4 +20,5 @@
     <color name="color_text_artist_album">#C1C0C0</color>
     <color name="color_bg_progress_and_thumb">#D9519D</color>
     <color name="color_bg_circle">#757681</color>
+    <color name="color_medium">#C1C0C0</color>
 </resources>

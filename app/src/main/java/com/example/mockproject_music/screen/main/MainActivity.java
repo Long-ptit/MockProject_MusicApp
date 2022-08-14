@@ -337,9 +337,8 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
     }
 
     private void updateSeekBar() {
-        int currPosition = mMediaController.getCurrentPosition();
         if (binding != null) {
-            runOnUiThread(() -> binding.bottomPlayer.progress.setProgress(currPosition));
+            runOnUiThread(() -> binding.bottomPlayer.progress.setProgress(mMediaController.getCurrentPosition()));
         }
         mHandler.postDelayed(() -> updateSeekBar(), 1000);
     }
