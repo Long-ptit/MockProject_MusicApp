@@ -33,7 +33,7 @@ public class CirSeekBar extends View {
     private float cy;
     private float mPos;
     private float x1, y1;
-
+    private boolean mCanSeek;
     private RectF mBackgroundRing;
     private RectF mBackgroundCircleThumb;
     private RectF mProgressRing;
@@ -49,7 +49,7 @@ public class CirSeekBar extends View {
         mRadius = 500 / 2f;
         mIndicatorRadius = mProgressWidth = 10;
         mPadding = 40;
-
+        mCanSeek = false;
         initBaseDimes();
         initPaint();
     }
@@ -85,20 +85,24 @@ public class CirSeekBar extends View {
                 float y = event.getY();
                 float distanceTouchToCenter = (float) Math.sqrt((x - cx) * (x - cx) + (y - cy) * (y - cy));
 
-                if (distanceTouchToCenter > mRadius - mIndicatorRadius * 2
-                        && distanceTouchToCenter < mRadius + mIndicatorRadius * 2) {
-                    mPos = XYtoDegree(event.getX(), event.getY());
-                    handleData();
-                    mCallBack.onSeek(mPos);
+                //near circle
+                if (distanceTouchToCenter > mRadius - mBackgroundWidth * 2
+                        && distanceTouchToCenter < mRadius + mBackgroundWidth * 2) {
+                    Log.d("ptit", "onTouchEvent: go inside");
+                    mCanSeek = true;
                 } else {
+                    Log.d("ptit", "onTouchEvent: go outside");
+                    mCanSeek = false;
                     return true;
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
             case MotionEvent.ACTION_UP:
-                mPos = XYtoDegree(event.getX(), event.getY());
-                handleData();
-                mCallBack.onSeek(mPos);
+                if (mCanSeek) {
+                    mPos = XYtoDegree(event.getX(), event.getY());
+                    handleData();
+                    mCallBack.onSeek(mPos);
+                }
                 break;
         }
         invalidate();
