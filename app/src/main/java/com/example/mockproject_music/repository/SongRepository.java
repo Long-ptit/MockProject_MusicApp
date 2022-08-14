@@ -55,6 +55,7 @@ public class SongRepository {
 
         if (songCursor != null && songCursor.moveToFirst()) {
 
+            int idIndex = songCursor.getColumnIndex(MediaStore.Audio.Media._ID);
             int idAlbumIndex = songCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID);
             int titleIndex = songCursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
             int artistIndex = songCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
@@ -65,6 +66,7 @@ public class SongRepository {
 
 
             while (songCursor.moveToNext()) {
+                int id = songCursor.getInt(idIndex);
                 String title = songCursor.getString(titleIndex);
                 String artist = songCursor.getString(artistIndex);
                 String strUri = songCursor.getString(dataIndex);
@@ -74,7 +76,7 @@ public class SongRepository {
 
                 Uri uriImage = Uri.parse("content://media/external/audio/albumart");
                 String strSourceImg = ContentUris.withAppendedId(uriImage, songCursor.getLong(idAlbumIndex)).toString();
-                mList.add(new Song(strSourceImg, title, artist, strUri, album, duration));
+                mList.add(new Song(id ,strSourceImg, title, artist, strUri, album, duration));
             }
         }
         return mList;

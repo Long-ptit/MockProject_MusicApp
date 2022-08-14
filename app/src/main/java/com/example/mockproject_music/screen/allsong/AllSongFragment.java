@@ -84,5 +84,6 @@ public class AllSongFragment extends BaseFragment<MainViewModel, FragmentAllSong
     public void onClickMusic(Song song, int position) {
         viewModel.setDataEvent(Event.OPEN_MUSIC);
         mMediaPlayer.openMusicFromPosition(position);
+        viewModel.addSongToRoom(song);
     }
 }

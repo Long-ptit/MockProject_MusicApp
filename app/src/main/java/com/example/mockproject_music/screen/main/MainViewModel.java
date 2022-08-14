@@ -8,6 +8,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.mockproject_music.R;
+import com.example.mockproject_music.database.room.SongDB;
+import com.example.mockproject_music.database.room.SongDBRepository;
 import com.example.mockproject_music.model.Drawer;
 import com.example.mockproject_music.model.Song;
 import com.example.mockproject_music.player.MyMediaPlayerController;
@@ -19,20 +21,35 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class MainViewModel extends AndroidViewModel  {
+public class MainViewModel extends AndroidViewModel {
     private static final String TAG = "MyLog";
     private MutableLiveData<List<Drawer>> mListDrawerMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<Event> mEventMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<Boolean> mShowPlayer = new MutableLiveData<>(false);
     private MutableLiveData<List<Song>> mListAllSong = new MutableLiveData<>();
     private ExecutorService mExecutorService;
+    private SongDBRepository mSongRepository;
 
 
     public MainViewModel(@NonNull Application application) {
         super(application);
         mExecutorService = Executors.newSingleThreadExecutor();
+        mSongRepository = new SongDBRepository(application);
     }
 
+    public void addSongToRoom(Song song) {
+        SongDB songDB = new SongDB(
+                song.getId(),
+                song.getPreviewResource(),
+                song.getName(),
+                song.getSinger(),
+                song.getDataSource(),
+                song.getAlbumName(),
+                song.getDuration(),
+                System.currentTimeMillis()
+        );
+        mSongRepository.insertSong(songDB);
+    }
 
     public LiveData<Event> getEventMutableLiveData() {
         return mEventMutableLiveData;

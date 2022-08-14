@@ -1,6 +1,8 @@
 package com.example.mockproject_music.model;
 
 public class Song {
+
+    private int id;
     private String previewResource;
     private String name;
     private String singer;
@@ -41,13 +43,22 @@ public class Song {
         this.singer = singer;
     }
 
-    public Song(String previewResource, String name, String singer, String dataSource, String albumName, long duration) {
+    public Song(int id, String previewResource, String name, String singer, String dataSource, String albumName, long duration) {
+        this.id = id;
         this.previewResource = previewResource;
         this.name = name;
         this.singer = singer;
         this.dataSource = dataSource;
         this.albumName = albumName;
         this.duration = duration;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getAlbumName() {
