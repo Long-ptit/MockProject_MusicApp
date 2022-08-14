@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.mockproject_music.screen.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_recentPlayDetailFragment"
+            app:destination="@id/recentPlayDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/songFragment"
         android:name="com.example.mockproject_music.screen.song.SongFragment"
@@ -34,4 +38,8 @@
         android:name="com.example.mockproject_music.screen.play_song.PlaySongFragment"
         android:label="PlaySongFragment"
         tools:layout="@layout/fragment_play_song"/>
+    <fragment
+        android:id="@+id/recentPlayDetailFragment"
+        android:name="com.example.mockproject_music.screen.detail_recent_play.RecentPlayDetailFragment"
+        android:label="RecentPlayDetailFragment" />
 </navigation>

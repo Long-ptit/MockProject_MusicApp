@@ -1,33 +1,23 @@
 package com.example.mockproject_music.screen.allsong;
 
 import android.Manifest;
-import android.content.ContentResolver;
-import android.database.Cursor;
-import android.net.Uri;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
-import android.provider.MediaStore;
-import android.util.Log;
-
 import com.example.mockproject_music.R;
-import com.example.mockproject_music.screen.allsong.adapter.AllSongAdapter;
 import com.example.mockproject_music.base.BaseFragment;
 import com.example.mockproject_music.databinding.FragmentAllSongBinding;
-import com.example.mockproject_music.screen.main.type.Event;
 import com.example.mockproject_music.model.Song;
 import com.example.mockproject_music.player.MyMediaPlayerController;
+import com.example.mockproject_music.screen.allsong.adapter.AllSongAdapter;
 import com.example.mockproject_music.screen.main.MainViewModel;
+import com.example.mockproject_music.screen.main.type.Event;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AllSongFragment extends BaseFragment<MainViewModel, FragmentAllSongBinding>
@@ -42,6 +32,7 @@ public class AllSongFragment extends BaseFragment<MainViewModel, FragmentAllSong
             @Override
             public void onChanged(List<Song> songs) {
                 Log.d("ptit", "onChanged alllist: ");
+                mMediaPlayer.setListSong(songs);
                 mAllSongAdapter.setListData(songs);
             }
         });
@@ -55,6 +46,12 @@ public class AllSongFragment extends BaseFragment<MainViewModel, FragmentAllSong
     public void initView() {
         setUpRcv();
         mMediaPlayer = MyMediaPlayerController.getInstance(getContext());
+
+        if (!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            Toast.makeText(getContext(), "You should open permission", Toast.LENGTH_SHORT).show();
+        } else {
+            viewModel.loadSong();
+        }
     }
 
 
@@ -75,7 +72,6 @@ public class AllSongFragment extends BaseFragment<MainViewModel, FragmentAllSong
                 RecyclerView.VERTICAL,
                 false
         );
-
         binding.rcv.setLayoutManager(layoutManager);
         binding.rcv.setAdapter(mAllSongAdapter);
     }
@@ -84,6 +80,6 @@ public class AllSongFragment extends BaseFragment<MainViewModel, FragmentAllSong
     public void onClickMusic(Song song, int position) {
         viewModel.setDataEvent(Event.OPEN_MUSIC);
         mMediaPlayer.openMusicFromPosition(position);
-        viewModel.addSongToRoom(song);
     }
+
 }

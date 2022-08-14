@@ -17,6 +17,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     private HotRecommendAdapter mHotRecommendAdapter;
     private PlaylistAdapter mPlaylistAdapter;
     private RecentPlayAdapter mRecentPlayAdapter;
+    private CallBackHome mCallBack;
 
     public RecentPlayAdapter getRecentPlayAdapter() {
         return mRecentPlayAdapter;
@@ -30,12 +31,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         return mPlaylistAdapter;
     }
 
-    public HomeAdapter(Context context) {
+    public HomeAdapter(Context context, CallBackHome callBackHome) {
         this.mContext = context;
      //   mListData = new ArrayList<>();
         mHotRecommendAdapter = new HotRecommendAdapter(mContext);
         mPlaylistAdapter = new PlaylistAdapter(mContext);
         mRecentPlayAdapter = new RecentPlayAdapter(mContext);
+        this.mCallBack = callBackHome;
     }
 
     @Override
@@ -78,6 +80,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
                 ));
                 holder.mBinding.rcv.setAdapter(mRecentPlayAdapter);
                 holder.mBinding.diveder.setVisibility(View.GONE);
+                holder.mBinding.tvSeeAll.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mCallBack.onClickViewAll();
+                    }
+                });
                 break;
             }
 
@@ -98,8 +106,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         }
     }
 
-//    public interface CallBack {
-//        void onClickStudent(Student student);
-//    }
+    public void setCallBackRecent(RecentPlayAdapter.CallBackRecentPlay callBackRecentPlay) {
+        mRecentPlayAdapter.setListener(callBackRecentPlay);
+    }
+
+    public interface CallBackHome {
+        void onClickViewAll();
+    }
 
 }

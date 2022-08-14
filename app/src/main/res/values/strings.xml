@@ -18,4 +18,5 @@
     <string name="shuffle">Shuffle</string>
     <string name="repeat">Repeat</string>
     <string name="eq">EQ</string>
+    <string name="recent_play">Recent Play</string>
 </resources>

@@ -138,7 +138,6 @@ public class PlaySongFragment extends BaseFragment<MainViewModel,FragmentPlaySon
                 break;
             }
             case CHANGE_SONG: {
-                Log.d(TAG, "updateData: changesong hiih");
                 Song currentSong = mMediaController.getCurrentSong();
                 showDataSong(currentSong);
                 setPause();

@@ -76,7 +76,7 @@ public class SongRepository {
 
                 Uri uriImage = Uri.parse("content://media/external/audio/albumart");
                 String strSourceImg = ContentUris.withAppendedId(uriImage, songCursor.getLong(idAlbumIndex)).toString();
-                mList.add(new Song(id ,strSourceImg, title, artist, strUri, album, duration));
+                mList.add(new Song(id ,strSourceImg, title, artist, strUri, album, duration, 0));
             }
         }
         return mList;

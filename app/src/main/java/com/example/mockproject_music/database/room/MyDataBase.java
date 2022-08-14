@@ -6,7 +6,9 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {SongDB.class}, version = 1)
+import com.example.mockproject_music.model.Song;
+
+@Database(entities = {Song.class}, version = 1)
 public abstract class MyDataBase extends RoomDatabase {
 
     private static MyDataBase instance;

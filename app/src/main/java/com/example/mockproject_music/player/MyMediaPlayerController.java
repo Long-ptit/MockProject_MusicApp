@@ -57,9 +57,22 @@ public final class MyMediaPlayerController implements CallBackFinish {
         this.mListSong = mListSong;
     }
 
+    //using this function when only one list in screen
+    public void openMusicFromPositionWithList(int position, List<Song> mListSong) {
+        this.mListSong.clear();
+        this.mListSong = mListSong;
+        mIndexSong = position;
+        mMediaPlayer.playSong(mListSong.get(position));
+    }
+
+    //using this function when have many list in screen
     public void openMusicFromPosition(int position) {
-            mIndexSong = position;
-            mMediaPlayer.playSong(mListSong.get(position));
+        mIndexSong = position;
+        mMediaPlayer.playSong(mListSong.get(position));
+    }
+
+    public void setPosition(int mIndexSong) {
+        this.mIndexSong = mIndexSong;
     }
 
     public boolean isPlaying() {

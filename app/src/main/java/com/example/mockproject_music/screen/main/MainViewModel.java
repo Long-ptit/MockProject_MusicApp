@@ -8,9 +8,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.mockproject_music.R;
-import com.example.mockproject_music.database.room.SongDB;
 import com.example.mockproject_music.database.room.SongDBRepository;
 import com.example.mockproject_music.model.Drawer;
+import com.example.mockproject_music.model.Playlist;
 import com.example.mockproject_music.model.Song;
 import com.example.mockproject_music.player.MyMediaPlayerController;
 import com.example.mockproject_music.repository.SongRepository;
@@ -29,26 +29,55 @@ public class MainViewModel extends AndroidViewModel {
     private MutableLiveData<List<Song>> mListAllSong = new MutableLiveData<>();
     private ExecutorService mExecutorService;
     private SongDBRepository mSongRepository;
+    private MutableLiveData<List<Song>> mListSongMutableLiveData = new MutableLiveData<>();
+    private MutableLiveData<List<Playlist>> mListPlayListMutableLiveData = new MutableLiveData<>();
+
+
+    public LiveData<List<Song>> getListSongRecentMutableLiveData() {
+        return mSongRepository.getSongRecentPlay(5);
+    }
+
+    public LiveData<List<Song>> getListSongMutableLiveData() {
+        return mListSongMutableLiveData;
+    }
+
+    public LiveData<List<Playlist>> getListPlayListMutableLiveData() {
+        return mListPlayListMutableLiveData;
+    }
+
+    public void addFakePlayList() {
+        List<Playlist> listPlayList = new ArrayList<>();
+        listPlayList.add(new Playlist("Classic Playlist", R.drawable.img_preview_song_home,"Piano Guys"));
+        listPlayList.add(new Playlist("Classic Playlist", R.drawable.img_preview_song_home,"Piano Guys"));
+        listPlayList.add(new Playlist("Classic Playlist", R.drawable.img_preview_song_home,"Piano Guys"));
+        listPlayList.add(new Playlist("Classic Playlist", R.drawable.img_preview_song_home,"Piano Guys"));
+        listPlayList.add(new Playlist("Classic Playlist", R.drawable.img_preview_song_home,"Piano Guys"));
+
+        mListPlayListMutableLiveData.postValue(listPlayList);
+    }
+
+    public void addFakeData() {
+        List<Song> listSong = new ArrayList<>();
+        listSong.add(new Song(1,"1", "Sound of Sky", "Dilon Bruce", "1", "1", 1, 0));
+        listSong.add(new Song(1,"1", "Sound of Sky", "Dilon Bruce", "1", "1", 1, 0));
+        listSong.add(new Song(1,"1", "Sound of Sky", "Dilon Bruce", "1", "1", 1, 0));
+        listSong.add(new Song(1,"1", "Sound of Sky", "Dilon Bruce", "1", "1", 1, 0));
+        listSong.add(new Song(1,"1", "Sound of Sky", "Dilon Bruce", "1", "1", 1, 0));
+
+
+        mListSongMutableLiveData.postValue(listSong);
+    }
 
 
     public MainViewModel(@NonNull Application application) {
         super(application);
         mExecutorService = Executors.newSingleThreadExecutor();
-        mSongRepository = new SongDBRepository(application);
+        mSongRepository = SongDBRepository.getInstance(application);
     }
 
     public void addSongToRoom(Song song) {
-        SongDB songDB = new SongDB(
-                song.getId(),
-                song.getPreviewResource(),
-                song.getName(),
-                song.getSinger(),
-                song.getDataSource(),
-                song.getAlbumName(),
-                song.getDuration(),
-                System.currentTimeMillis()
-        );
-        mSongRepository.insertSong(songDB);
+        song.setCreateAt(System.currentTimeMillis());
+        mSongRepository.insertSong(song);
     }
 
     public LiveData<Event> getEventMutableLiveData() {
@@ -65,9 +94,6 @@ public class MainViewModel extends AndroidViewModel {
             public void run() {
                 List<Song> listAllSong = SongRepository.getInstance(getApplication()).getAllSongFromDevice();
                 mListAllSong.postValue(listAllSong);
-                MyMediaPlayerController.
-                        getInstance(getApplication().getApplicationContext())
-                        .setListSong(listAllSong);
             }
         });
     }
@@ -90,6 +116,10 @@ public class MainViewModel extends AndroidViewModel {
 
     public LiveData<List<Drawer>> getListDrawerMutableLiveData() {
         return mListDrawerMutableLiveData;
+    }
+
+    public LiveData<List<Song>> getAllSongRecent() {
+        return mSongRepository.getAllSongInDB();
     }
 
     public void addDataDrawer() {

@@ -223,8 +223,6 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
         viewModel.addDataDrawer();
         if (!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
             requestPermissionsSafely(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE_PM_READ_EXTERNAL);
-        } else {
-            viewModel.loadSong();
         }
     }
 
@@ -233,7 +231,7 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CODE_PM_READ_EXTERNAL) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                viewModel.loadSong();
+                Toast.makeText(MainActivity.this, "Permission Granted", Toast.LENGTH_SHORT).show();
             }
             else {
                 Toast.makeText(MainActivity.this, "Permission Denied", Toast.LENGTH_SHORT).show();
@@ -289,10 +287,12 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
 
     @Override
     public void onBackPressed() {
+        Log.d(TAG, "onBackPressed: ");
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) { //replace this with actual function which returns if the drawer is open
             binding.drawerLayout.close();     // replace this with actual function which closes drawer
         } else if (binding.bottomView.getSelectedItemId() == R.id.playSongFragment) {
             binding.bottomView.setSelectedItemId(idLastestScreen);
+            Log.d(TAG, "onBackPressed kk: ");
         } else {
             super.onBackPressed();
         }
@@ -311,10 +311,11 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
                 break;
             }
             case CHANGE_SONG: {
-                Log.d(TAG, "updateData: changesong");
+                Log.d("ptit", "updateData: changesong");
                 Song currentSong = mMediaController.getCurrentSong();
                 showData(currentSong);
                 setPause();
+                viewModel.addSongToRoom(mMediaController.getCurrentSong());
                 break;
             }
 
@@ -341,6 +342,11 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
             runOnUiThread(() -> binding.bottomPlayer.progress.setProgress(currPosition));
         }
         mHandler.postDelayed(() -> updateSeekBar(), 1000);
+    }
+
+    public void navigateToDetailScreen() {
+        idLastestScreen = binding.bottomView.getSelectedItemId();
+        binding.bottomView.setSelectedItemId(R.id.recentPlayDetailFragment);
     }
 
 }

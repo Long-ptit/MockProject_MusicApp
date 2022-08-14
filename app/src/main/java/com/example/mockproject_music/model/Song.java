@@ -1,7 +1,12 @@
 package com.example.mockproject_music.model;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Song {
 
+    @PrimaryKey
     private int id;
     private String previewResource;
     private String name;
@@ -9,14 +14,27 @@ public class Song {
     private String dataSource;
     private String albumName;
     private long duration;
+    private long createAt;
 
-
-    public String getDataSource() {
-        return dataSource;
+    public Song(int id, String previewResource, String name, String singer, String dataSource, String albumName, long duration, long createAt) {
+        this.id = id;
+        this.previewResource = previewResource;
+        this.name = name;
+        this.singer = singer;
+        this.dataSource = dataSource;
+        this.albumName = albumName;
+        this.duration = duration;
+        this.createAt = createAt;
     }
 
-    public void setDataSource(String dataSource) {
-        this.dataSource = dataSource;
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPreviewResource() {
@@ -43,22 +61,12 @@ public class Song {
         this.singer = singer;
     }
 
-    public Song(int id, String previewResource, String name, String singer, String dataSource, String albumName, long duration) {
-        this.id = id;
-        this.previewResource = previewResource;
-        this.name = name;
-        this.singer = singer;
+    public String getDataSource() {
+        return dataSource;
+    }
+
+    public void setDataSource(String dataSource) {
         this.dataSource = dataSource;
-        this.albumName = albumName;
-        this.duration = duration;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getAlbumName() {
@@ -75,5 +83,13 @@ public class Song {
 
     public void setDuration(long duration) {
         this.duration = duration;
+    }
+
+    public long getCreateAt() {
+        return createAt;
+    }
+
+    public void setCreateAt(long createAt) {
+        this.createAt = createAt;
     }
 }
