@@ -21,7 +21,7 @@ import java.util.List;
 public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder> {
     private List<Artists> mListData;
     private final Context mContext;
-
+    private CallBackArtis mCallBack;
     @SuppressLint("NotifyDataSetChanged")
     public void setListData(List<Artists> mListData) {
         this.mListData = mListData;
@@ -29,8 +29,9 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder
     }
 
 
-    public ArtistAdapter(Context context) {
+    public ArtistAdapter(Context context, CallBackArtis callBackArtis) {
         this.mContext = context;
+        this.mCallBack = callBackArtis;
         mListData = new ArrayList<>();
     }
 
@@ -48,7 +49,9 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder
         holder.mBinding.tvNameAlbum.setText(artists.getName());
         holder.mBinding.tvTotalSong.setText(artists.getTotalSong() + " Songs");
         holder.mBinding.tvTotalAlbum.setText(artists.getTotalAlbum() + " Albums");
-
+        holder.mBinding.imgMore.setOnClickListener(v -> {
+            mCallBack.onClickMore(position, artists, v);
+        });
         Glide
                 .with(mContext)
                 .load(artists.getImgThumb())
@@ -70,5 +73,8 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder
         }
     }
 
+    public interface CallBackArtis {
+        void onClickMore(int position, Artists artists, View v);
+    }
 
 }
