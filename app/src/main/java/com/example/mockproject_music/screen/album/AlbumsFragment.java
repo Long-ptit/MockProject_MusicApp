@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.PopupMenu;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class AlbumsFragment extends BaseFragment<MainViewModel, FragmentAlbumsBinding>
+public class AlbumsFragment extends BaseFragment<AlbumViewModel, FragmentAlbumsBinding>
         implements AlbumAdapter.CallBackAlbum {
 
     private static final String TAG = "MyLog";
@@ -32,7 +33,12 @@ public class AlbumsFragment extends BaseFragment<MainViewModel, FragmentAlbumsBi
 
     @Override
     public void observerLiveData() {
-
+        viewModel.getMutableListFakeAlbum().observe(getViewLifecycleOwner(), new Observer<List<Album>>() {
+            @Override
+            public void onChanged(List<Album> albums) {
+                mAlbumAdapter.setListData(albums);
+            }
+        });
     }
 
     @Override
@@ -51,20 +57,11 @@ public class AlbumsFragment extends BaseFragment<MainViewModel, FragmentAlbumsBi
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         binding.rcv.setLayoutManager(layoutManager);
         binding.rcv.setAdapter(mAlbumAdapter);
-        int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.dp10);
+        binding.rcv.addItemDecoration(new SpaceItemDecoration(10, 10, 10, 10));
         //binding.rcv.addItemDecoration(new SpaceItemDecoration(spacingInPixels));
-        getFakeData();
+        viewModel.getDataFakeAlbum();
     }
 
-    private void getFakeData() {
-        List<Album> listAlbum = new ArrayList<>();
-        listAlbum.add(new Album("History", "Michael Jackson"));
-        listAlbum.add(new Album("Thriller", "Michael Jackson"));
-        listAlbum.add(new Album("It Won't Be Soon. . ", "Maroon 5"));
-        listAlbum.add(new Album("I Am... Yours", "Beyonce"));
-
-        mAlbumAdapter.setListData(listAlbum);
-    }
 
     @Override
     public int getLayoutId() {
@@ -73,7 +70,7 @@ public class AlbumsFragment extends BaseFragment<MainViewModel, FragmentAlbumsBi
 
     @Override
     public void initViewModel() {
-        viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(AlbumViewModel.class);
     }
 
     @Override
