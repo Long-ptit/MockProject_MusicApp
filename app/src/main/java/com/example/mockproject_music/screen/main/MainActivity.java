@@ -3,6 +3,7 @@ package com.example.mockproject_music.screen.main;
 import android.Manifest;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -46,6 +48,7 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
         implements MediaPlayerCallback {
 
     private static final String TAG = "MyLog";
+    private static final int REQUEST_CODE_PM_READ_EXTERNAL = 1;
     private DrawerAdapter mDrawerAdapter;
     private MyMediaPlayerController mMediaController;
     private Handler mHandler;
@@ -129,10 +132,6 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
 
     @Override
     public void initListener() {
-
-        if (!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
-            requestPermissionsSafely(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-        }
 
         binding.bottomPlayer.imgPlay.setOnClickListener(v -> {
             playOrPauseSong();
@@ -222,7 +221,24 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
         initHandler();
         showPlayerWhenOpenApp();
         viewModel.addDataDrawer();
-        viewModel.loadSong();
+        if (!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            requestPermissionsSafely(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE_PM_READ_EXTERNAL);
+        } else {
+            viewModel.loadSong();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE_PM_READ_EXTERNAL) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                viewModel.loadSong();
+            }
+            else {
+                Toast.makeText(MainActivity.this, "Permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private void showPlayerWhenOpenApp() {

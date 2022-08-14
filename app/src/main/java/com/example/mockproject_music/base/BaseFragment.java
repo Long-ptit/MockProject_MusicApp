@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,13 @@ public abstract class BaseFragment<VM extends ViewModel, BINDING extends ViewDat
         initView();
         observerLiveData();
         initListener();
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    protected boolean hasPermission(String permission) {
+        Log.d(TAG, "hasPermission: ");
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M ||
+                getActivity().checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED;
     }
 
 
