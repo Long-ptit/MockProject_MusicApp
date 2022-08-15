@@ -58,7 +58,7 @@ public class AllSongAdapter extends RecyclerView.Adapter<AllSongAdapter.ViewHold
         Glide
                 .with(mContext)
                 .load(song.getPreviewResource())
-                .placeholder(R.drawable.img_preview_song_home)g
+                .placeholder(R.drawable.img_preview_song_home)
                 .into(holder.mBinding.imgThumb);
     }
 

@@ -94,6 +94,7 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
         Glide
                 .with(getApplicationContext())
                 .load(song.getPreviewResource())
+                .placeholder(R.drawable.img_preview_song_home)
                 .into(binding.bottomPlayer.imgPreview);
     }
 
