@@ -13,11 +13,12 @@
         <SeekBar
             android:id="@+id/progress"
             android:layout_width="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_height="10dp"
+            android:layout_height="@dimen/dp10"
             android:background="#00FFFFFF"
             android:progress="20"
-            android:thumb="@drawable/bg_thumb_progess_music_bottom_player" />
+            android:progressTint="@color/color_bg_progress"
+            android:thumb="@drawable/bg_thumb_progess_music_bottom_player"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/img_preview"
@@ -36,10 +37,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp15"
-            app:layout_constraintEnd_toStartOf="@id/layout_player"
             android:layout_marginTop="@dimen/dp5"
-            android:orientation="vertical"
             android:layout_marginEnd="@dimen/dp10"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@id/layout_player"
             app:layout_constraintStart_toEndOf="@id/img_preview"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -53,8 +54,8 @@
             <TextView
                 android:id="@+id/tv_artis_song"
                 android:layout_width="wrap_content"
-                android:maxLines="1"
                 android:layout_height="wrap_content"
+                android:maxLines="1"
                 tools:text="Hello" />
 
 
@@ -98,6 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp4"
+            android:padding="@dimen/dp5"
             android:src="@drawable/ic_bottom_player_close"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

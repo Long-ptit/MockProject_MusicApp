@@ -56,10 +56,11 @@
             android:background="@color/bg_app"
             app:tabMode="scrollable"
             app:tabIndicator="@drawable/ic_bg_tab_view_pager"
-            app:tabIndicatorColor="@null"
+            app:tabIndicatorColor="@color/color_tab_layout_selected"
             app:tabTextAppearance="@style/tab_text"
-            app:tabTextColor="@null"
+            app:tabTextColor="@color/white"
             app:tabGravity="start"
+            app:tabSelectedTextColor="@color/color_tab_layout_selected"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

@@ -13,7 +13,7 @@
             android:id="@+id/img_icon_setting"
             android:layout_width="@dimen/dp24"
             android:layout_height="@dimen/dp24"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             android:src="@drawable/ic_setting_heaset"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
