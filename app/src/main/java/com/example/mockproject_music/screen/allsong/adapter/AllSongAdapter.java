@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.mockproject_music.R;
 import com.example.mockproject_music.databinding.ItemRcvAllSongBinding;
 import com.example.mockproject_music.model.Song;
 
@@ -57,6 +58,7 @@ public class AllSongAdapter extends RecyclerView.Adapter<AllSongAdapter.ViewHold
         Glide
                 .with(mContext)
                 .load(song.getPreviewResource())
+                .placeholder(R.drawable.img_preview_song_home)g
                 .into(holder.mBinding.imgThumb);
     }
 

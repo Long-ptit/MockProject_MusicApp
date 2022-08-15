@@ -46,7 +46,7 @@ public class CirSeekBar extends View {
         mContext = context;
         mBackgroundWidth = 5;
         mCircleWidth = 20;
-        mRadius = 500 / 2f;
+        mRadius = 450 / 2f;
         mIndicatorRadius = mProgressWidth = 10;
         mPadding = 40;
         mCanSeek = false;
